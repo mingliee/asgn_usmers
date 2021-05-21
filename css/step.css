@@ -1,0 +1,133 @@
+
+.card-step{
+    padding:0;
+    margin-bottom:0;
+    border:0;
+}
+
+.wizard{display:block;width:100%;overflow:hidden}
+.wizard a{outline:0}.wizard ul{list-style:none!important;padding:0;margin:0}
+.wizard ul>li{display:block;padding:0}
+.wizard>.steps{position:relative;display:block;width:100%}
+.wizard>.steps .current-info{position:absolute;left:-999em}
+.wizard>.steps .number{font-size:.875rem}
+.wizard>.steps>ul>li{
+    width:25%;float:left;
+    text-align:center
+}
+@media (max-width:768px){
+    .wizard>.steps>ul>li{width:50%}
+}
+.wizard>.steps a{font-size:.875rem;font-family:montserrat,sans-serif}
+.wizard>.steps a,.wizard>.steps a:active,.wizard>.steps a:hover{
+    display:block;width:auto;margin:0 .5em .5em;padding:1em;text-decoration:none;border-radius:5px
+}
+.wizard>.steps .disabled a,.wizard>.steps .disabled a:hover{
+    background:#e6e9ed;color:#434a54;cursor:default
+}
+.wizard>.steps .disabled a:active{background:#e6e9ed e;color:#434a54;cursor:default}
+
+.wizard>.steps .current a,.wizard>.steps .current a:active,.wizard>.steps .current a:hover{
+    background:#974ce1;color:#fff;cursor:default
+}
+
+.wizard>.steps .done a,.wizard>.steps .done a:active,.wizard>.steps .done a:hover{
+    background:#e9d3ff;color:#fff
+
+}.wizard>.steps .error a,.wizard>.steps .error a:active,.wizard>.steps .error a:hover{
+    background:#fe7c96;color:#fff
+}
+.wizard>.content{
+    background:#f2edf3;display:block;margin:.5em;
+    min-height:20em;overflow:hidden;position:relative;width:auto;border-radius:5px
+}
+.wizard>.content>.title{
+    position:absolute;left:-999em
+}
+.wizard>.content>.body{
+    float:left;position:absolute;width:100%;height:100%;padding:2.5%;overflow-y:auto
+}
+.wizard>.content>.body ul{
+    list-style:disc!important
+}
+.wizard>.content>.body ul>li{
+    display:list-item
+}
+.wizard>.content>.body>iframe{
+    border:0;width:100%;height:100%
+}
+.wizard>.content>.body input{
+    display:block;border:1px solid #ebedf2
+}
+.wizard>.content>.body input[type=checkbox]{
+    display:inline-block
+}
+.wizard>.content>.body input.error{
+    background:#fbe3e4;border:1px solid #ffe1e7;color:#fe7c96
+}
+.wizard>.content>.body label{
+    display:inline-block;margin-bottom:.5em
+}
+.wizard>.content>.body label.error{
+    color:#fe7c96;display:inline-block;margin-left:1.5em
+}
+.wizard>.actions{
+    padding-bottom: 15px;
+    padding-top:20px;position:relative;display:block;
+    text-align:right;width:100%
+}
+.wizard>.actions>ul{
+    display:inline-block;text-align:right
+}
+.wizard>.actions>ul>li{
+    float:left;margin:0 .5em
+}
+.wizard.vertical>.steps{
+    display:inline;float:left;width:30%
+}
+.wizard.vertical>.steps>ul>li{
+    float:none;width:100%;text-align:left
+}
+.wizard.vertical>.content{
+    display:inline;float:left;margin:0 2.5% .5em;width:65%
+}
+.wizard.vertical>.actions{
+    display:inline;float:right;margin:0 2.5%;width:95%
+}
+.wizard.vertical>.actions>ul>li{
+    margin:0 0 0 1em
+}
+.wizard>.actions a:not(.btn-light):not(.btn-secondary), .wizard>.actions a:not(.btn-light):not(.btn-secondary):active, .wizard>.actions a:not(.btn-light):not(.btn-secondary):focus, .wizard>.actions a:not(.btn-light):not(.btn-secondary):hover {
+    color: #fff;
+}
+.wizard>.actions .disabled a {
+    background-color: #974ce1;
+}
+.ajax-upload-dragdrop .ajax-file-upload, .btn, .fc button, .wizard>.actions a {
+    font-size: .875rem;
+    line-height: 1;
+    font-weight: 700;
+}
+.wizard>.actions a {
+    background-color: #974ce1;
+}
+.wizard>.actions a {
+    border: 1px solid transparent;
+    padding: 9px 20px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    display: inline-block;
+    background-color: #974ce1;
+    position: relative;
+    color: #fff;
+    z-index: 1;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 400;
+    font-family:open sans,sans-serif;
+}
+.wizard>.actions a:hover{
+    color:rgb(0, 0, 0);
+    box-shadow:0 6px 22px rgba(0,0,0,.1)
+}
