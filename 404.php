@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+require 'session.php';
+?><!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -66,6 +68,9 @@ if(isset($_GET['e'])){
     $reason=$_GET['e'];
     if($reason==="removed"){
         echo '<h5><span>Ooooops!</span> Ad has been removed by seller/admin!</h5>';
+    }else if($reason==="revoked"){
+        echo '<h5><span>Ooooops!</span> Your access to post new ads has been revoked!<br>
+        <a href="support.php">Contact us</a> for more info.</h5>';
     }
 
 }else{
