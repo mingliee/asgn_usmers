@@ -133,7 +133,7 @@ $(function () {
 
 <section class="services section-padding">
 <div class="container">
-<div class="row">
+<div class="row about-func">
 
 <div class="col-md-6 col-lg-4 col-xs-12">
 <div class="services-item wow fadeInRight" data-wow-delay="0.4s">
