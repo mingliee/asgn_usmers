@@ -1,5 +1,8 @@
 <?php
 require 'session.php';
+if($_SESSION['revoked']==1){
+    echo("<script>location.href = '404.php?e=revoked';</script>");
+}
 ?>
 
 <!DOCTYPE html>
@@ -116,8 +119,8 @@ include  'navbar.php';
 
     <div class="form-group mb-3" id="tenet_div" style="display:none">
         <label class="control-label">Tenet Preference*</label><br>
-        <label class ="tenet"><input type="checkbox" name="tenet[]" id="checkMale" value="male" >  Male</label>
-        <label class ="tenet"><input type="checkbox" name="tenet[]" id="checkFemale" value="female">  Female</label><br/>            
+        <label class ="tenet"><input type="checkbox" name="tenet[]" id="checkMale" value="m" >  Male</label>
+        <label class ="tenet"><input type="checkbox" name="tenet[]" id="checkFemale" value="f">  Female</label><br/>            
         <span class="required error" id="tenet-info"></span>
     </div>
 

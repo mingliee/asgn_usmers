@@ -19,7 +19,6 @@ require 'session.php';
 
 <link rel="stylesheet" type="text/css" href="css/slicknav.css">
 
-
 <link rel="stylesheet" type="text/css" href="css/nivo-lightbox.css">
 
 <link rel="stylesheet" type="text/css" href="css/animate.css">
@@ -223,7 +222,7 @@ echo '<div id="grid-view" class="tab-pane fade active show">
             echo '</a>
             </div>
             <h4>';
-            echo $ads_id;
+            echo $name;
             echo '</h4>
             <ul class="address">
             <li>

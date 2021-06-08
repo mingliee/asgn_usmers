@@ -374,7 +374,7 @@ Pre-loved/New Items
 </div>
 
 
-<div class="adds-wrapper">
+<div>
 <div class="tab-content">
 <div id="grid-view" class="tab-pane fade active show">
 <!-- <?php
@@ -399,7 +399,7 @@ echo '<p style="text-align:right">numAds: '.$total_rows.'</p><br/>';
             }else{
                 $free="false";
             }
-            $price=str_ireplace('.00','',$price);
+		$price=str_ireplace('.00','',$price);
 		$descp = $row['ADS_DESCP'];
 		$loc = $row['ADS_LOC'];
 		if($loc=='ou'||$loc=='op'||$loc=='ou'){

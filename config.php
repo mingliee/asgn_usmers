@@ -7,6 +7,8 @@ $dbPassword = "";
 $dbName = "usmers";
 
 $conn = mysqli_connect($servername,$dbUsername,$dbPassword,$dbName);
+date_default_timezone_set("Asia/Kuala_Lumpur");
+
 //$conn=false;
 if(!$conn){
     header("Location:404.php");

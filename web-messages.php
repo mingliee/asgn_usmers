@@ -58,17 +58,13 @@ include  'navbar.php';
 </div>
 </div>
 
-<div id="content " class="section-padding chat-section ">
+<div id="content " class="section-padding ">
 <div class="container">
 <div class="row">
 
 <div class="col-sm-12 col-md-8 col-lg-12 inner-box ">
   <div class="page-content ">
     <div class=" row offers-messages">
-
-    <?php
-        if(!isset($_GET['from'])) {
-      ?>
     <section class="users col-lg-4">
       <div class="dashboardboxtitle">
         <div class="search">
@@ -82,14 +78,11 @@ include  'navbar.php';
       </div>
     </section>
 
-    <?php
-        }
-
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 chatBox">
+    <section class="chat-area">
+      <?php
         if(isset($_GET['from'])) {
       ?>
-   <div class="col-xs-12 col-sm-12 col-md-12 chatBox">
-    <section class="chat-area">
-
       <div class="dashboardboxtitle msgTitle">
         <?php 
         $user_id = mysqli_real_escape_string($conn, $_GET['from']);
@@ -106,14 +99,15 @@ include  'navbar.php';
 
           if($row['USER_ID']===$_SESSION['userID']){
             $name=$row['USER_NAME']." (me)";
-            }else{
-                $name=$row['USER_NAME'];
-            }
+          }else{
+              $name=$row['USER_NAME'];
+          }
+
         }else{
-        header("location: users.php");
+        header("location: web/users.php");
         }
         ?>
-        <a href="messages.php" class="back-icon"><i class="lni-chevron-left"></i></a>
+        <a href="web-messages.php" class="back-icon"><i class="lni-chevron-left"></i></a>
         <button class="msgUser" onclick="visitUser('<?php echo $row['USER_ID']; ?>')"><img src="<?php echo $avatarLink; ?>" alt=""></button>
         <div class="details">
         <button class="msgUser" onclick="visitUser('<?php echo $row['USER_ID']; ?>')"><span><?php echo $name; ?></span></button>
@@ -130,17 +124,16 @@ include  'navbar.php';
       </form>
     </section>
     <?php 
-        }
- /*        else{
-          echo '<div class="chat-box" style="display:none">
+        }else{
+          echo '<div class="chat-box">
           <div class="start-msg">
                   <div class="start-content"><i class="lni-comments"></i></div>
                   <div class="start-content">Start Chatting!</div>
                   </div>
           </div>';
-        } */
+        }
     ?>
-    </div> 
+    </div>
 
     </div>
   </div>
@@ -168,6 +161,7 @@ function visitUser(id){
   location.href = "profile.php?userID="+id;
 }
 </script>
+
 <script src="js/jquery-min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -182,8 +176,8 @@ function visitUser(id){
 <script src="js/form-validator.min.js"></script>
 <script src="js/contact-form-script.min.js"></script>
 <script src="js/summernote.js"></script>
-<script src="js/users.js"></script>
-<script src="js/chat.js"></script>
+<script src="web/js/users.js"></script>
+<script src="web/js/chat.js"></script>
 
 </body>
 </html>

@@ -94,8 +94,9 @@ include  'navbar.php';
             AND ".$imgTable.".IMAGE_STATUS='ACTIVE' ";
         $r0=mysqli_query($conn,$q0);
         $rowcount=mysqli_num_rows($r0);
-        echo '<div class="owl-carousel owl-theme full-width">';
+
         if($rowcount==1){
+            echo '<div>';
             while($row = mysqli_fetch_assoc($r0)){
                 $image = $row['IMAGE_NAME'];
                 $ads_status=$row['ADS_STATUS'];
@@ -114,6 +115,7 @@ include  'navbar.php';
                 
             }
         } else if ($rowcount>1){
+            echo '<div class="owl-carousel owl-theme full-width">';
             while($row = mysqli_fetch_assoc($r0)){
                 $image = $row['IMAGE_NAME'];
                 $ads_status=$row['ADS_STATUS'];
@@ -150,47 +152,57 @@ include  'navbar.php';
 
             $i=0;
             $edit="true";
-            while($row = mysqli_fetch_assoc($r1)){
-                $userEmail=$row['USER_EMAIL'];
-                $ads_id = $row['ADS_ID'];
-                $ads_status=$row['ADS_STATUS'];
-                $privateStatus=$row['PRIVATE_STATUS'];
-                if($ads_status=="SOLD" || $ads_status=="DELETED"){
-                    $edit="false";
+
+            if(mysqli_num_rows($r1)==0){
+                echo 'q1: '.$q1;
+                //echo("<script>location.href = '404.php?e=removed';</script>");
+            }else{
+
+                while($row = mysqli_fetch_assoc($r1)){
+                    $userEmail=$row['USER_EMAIL'];
+                    $ads_id = $row['ADS_ID'];
+                    $ads_status=$row['ADS_STATUS'];
+                    $privateStatus=$row['PRIVATE_STATUS'];
+                    if($ads_status=="SOLD" || $ads_status=="DELETED"){
+                        $edit="false";
+                    }
+                    $name = $row ['ADS_TITLE'];
+                    $name = str_replace( '"',"'", $name);
+                    $price = $row['ADS_PRICE'];
+                    if($price=='0'){
+                        $free="true";
+                        $price="FREE";
+                    }else{
+                        $free="false";
+                    }
+                    $price=str_ireplace('.00','',$price);
+                    $descp = $row['ADS_DESCP'];
+                    $descp = str_replace( '"',"'", $descp);
+                    $loc = $row['ADS_LOC'];
+                    if($loc=='ou'||$loc=='op'||$loc=='ou'){
+                        $loc = $row['ADS_AREA'];
+                    }
+                    $cat = $row['CAT_NAME'];
+                    //$cat = strtok($cat, " ");
+                    $cat_value=$row['ADS_CAT'];
+                    $sub[$i]=$row['ABBR_NAME'];
+                    $date = date("j M y g:i a",strtotime($row['ADS_PUBLISH_DATE']));
+                    $seller = $row ['USER_NAME'];
+                    $sellerID=$row['USER_ID'];
+                    $phoneNo = $row['WHATSAPP'];
+                    $text="Hi, I'm interested in your ads *(";
+                    $text .= $name;
+                    $text .= ")* in _Usmers'_";
+                    $urlencodedtext = str_replace(' ', '%20', $text);
+                    $i++;
                 }
-                $name = $row ['ADS_TITLE'];
-                $name = str_replace( '"',"'", $name);
-                $price = $row['ADS_PRICE'];
-                if($price=='0'){
-                    $free="true";
-                    $price="FREE";
-                }else{
-                    $free="false";
-                }
-                $price=str_ireplace('.00','',$price);
-                $descp = $row['ADS_DESCP'];
-                $descp = str_replace( '"',"'", $descp);
-                $loc = $row['ADS_LOC'];
-                if($loc=='ou'||$loc=='op'||$loc=='ou'){
-                    $loc = $row['ADS_AREA'];
-                }
-                $cat = $row['CAT_NAME'];
-                //$cat = strtok($cat, " ");
-                $cat_value=$row['ADS_CAT'];
-                $sub[$i]=$row['ABBR_NAME'];
-                $date = date("j M y g:i a",strtotime($row['ADS_PUBLISH_DATE']));
-                $seller = $row ['USER_NAME'];
-                $sellerID=$row['USER_ID'];
-                $phoneNo = $row['WHATSAPP'];
-                $text="Hi, I'm interested in your ads *(";
-                $text .= $name;
-                $text .= ")* in _Usmers'_";
-                $urlencodedtext = str_replace(' ', '%20', $text);
-                $i++;
             }
+            
 
         $myID = $_SESSION["userID"];
         if($privateStatus==='DELETED'){
+            echo("<script>location.href = '404.php?e=removed';</script>");
+        }else if($myID!=$sellerID && $ads_status=="RESERVED"){
             echo("<script>location.href = '404.php?e=removed';</script>");
         }
          

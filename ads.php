@@ -79,9 +79,9 @@ if(isset($_GET['search_btn'])){
                 <?php 
                     $q1 = "SELECT * FROM LOCATION ORDER BY LOC_ID ASC";
                     $r1 = mysqli_query($conn,$q1);
-                    
+                    echo 'loc:'.$location;
                     while($loc= mysqli_fetch_array($r1)){
-                        if($loc['LOC_VALUE'] == 'none'){
+                        if($loc['LOC_VALUE'] == 'none'||$location== ''){
                             echo '<option title="item" value="'.$loc['LOC_VALUE'].'"';
                             echo ' style="background-color:#dcdcc3;font-weight:bold;color:#000000;" disabled>
                             '.$loc['LOC_NAME'].'</option>';
@@ -724,7 +724,7 @@ Pre-loved/New Items
 </div>
 
 
-<div class="adds-wrapper">
+<div >
 <div class="tab-content">
 <!-- <?php
 echo '<p style="text-align:right">total_pages: '.$total_pages.'</p>';

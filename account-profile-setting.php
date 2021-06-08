@@ -43,7 +43,28 @@ include  'navbar.php';
 ?>
 
 </header>
+<script>
+     $(document).ready(function(){
+        var scrollTo = getParameterByName('change');
+          if(scrollTo!=''){
+              $('html, body').animate({
+                 scrollTop: $("#chgPswdDiv").offset().top -50
+               }, 1000);
+          }
+      /* if (window.location.hash == "#chgPswd") {
+        $('html, body').animate({
+           scrollTop: $("#chgPswdDiv").offset().top
+         }, 1000);
+      } */
 
+      function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+   });
+</script>
 
 <div class="page-header" style="background: url(img/banner1.jpg);">
 <div class="container">
@@ -73,7 +94,7 @@ require 'config.php';
     WHERE USER_EMAIL='$sesEmail'";
     $userResult=mysqli_query($conn,$userSQL);
 
-        while($row = mysqli_fetch_assoc($userResult)){
+    while($row = mysqli_fetch_assoc($userResult)){
         $username=$row['USER_NAME'];
         $useremail = $row['USER_EMAIL'];
         $user_status=$row['USER_STATUS'];
@@ -85,7 +106,6 @@ require 'config.php';
         $school = $row ['SCHOOL_NAME'];
         $userID = $row ['USER_ID'];
         $avatar = $row['AVATAR_NAME'];
-        
 
         $join = date("j M y g:i a",strtotime($row['CREATE_AT']));
         //$seller = $row ['USER_NAME'];
@@ -234,6 +254,55 @@ require 'config.php';
 </div>
 </div>
 </div>
+
+<br>
+
+<div class="inner-box"  id="chgPswdDiv">
+ <div class="tg-contactdetail">
+<div class="dashboard-box">
+<h2 class="dashbord-title">Change Password</h2>
+<?php
+    $fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+     if(strpos($fullUrl,"change=success")==true){
+        echo "<div class='success-msg profile' id='success-msg'>Successfully Updated!</div>";
+    } else if(strpos($fullUrl,"change=error")==true){
+        echo "<div class='error-msg profile' id='error-msg'>Update Failed! Pleas Try Again Later.</div>";
+    } else if(strpos($fullUrl,"change=incorrect")==true){
+        echo "<div class='error-msg profile' id='error-msg'>Password incorrect.</div>";
+    } 
+    
+    ?>
+</div>
+<div class="dashboard-wrapper">
+<form role="form" class="chgPswd-form" name="chgPswd"  action="postSubmit.php" method="POST" onsubmit="return chgPswdVal()">
+    <div class="form-group mb-3 tg-inputwithicon">
+        <label class="control-label">Current</label>
+        <input class="input_cred" name="user_pswd" id="user_pswd" type="password" >
+        <span class="required error" id="pswd-info"></span>
+    </div>
+
+    <div class="form-group mb-3 tg-inputwithicon">
+        <label class="control-label">New</label>
+        <input class="input_cred" name="new_pswd" id="new_pswd" type="Password" >
+        <span class="required error" id="new_pswd-info"></span>
+    </div>
+
+    <div class="form-group mb-3 tg-inputwithicon">
+        <label class="control-label">Retype new</label>
+        <input class="input_cred" name="retype_pswd" id="retype_pswd" type="password" >
+        <span class="required error" id="retype_pswd-info"></span>
+    </div>
+    
+    <div style="display: flex; justify-content: flex-end;">
+    <input class="btn btn-common" type="submit" name="chgPswd_btn" id="chgPswd_btn" value="Save Changes" style="background-color:#e90dc8">
+    </div>
+</form>
+
+</div>
+</div>
+</div>
+
+
 </div>
 </div>
 </div>
@@ -258,7 +327,10 @@ include  'footer.php';
         btn.addEventListener('click', function() {
         document.location.href = 'update-profile.php';
      });
+
 </script>
+
+<script src="js/validate-pswd.js"></script>
 
 <script src="js/jquery-min.js"></script>
 <script src="js/popper.min.js"></script>

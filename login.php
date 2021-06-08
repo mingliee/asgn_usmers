@@ -70,7 +70,7 @@ Login Now
     <div class="form-group">
         <div class="input-icon">
         <i class="lni-user"></i>
-        <input type="text" id="user_email" class="input_cred" name="user_email" placeholder="*@usm.my or *@student.usm.my" onchange="valEmail();" >
+        <input type="email" id="user_email" class="input_cred" name="user_email" placeholder="*@usm.my or *@student.usm.my" onchange="valEmail();" >
         </div>
         <span class="required error" id="user_email-info"></span>
 

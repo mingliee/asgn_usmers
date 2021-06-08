@@ -19,7 +19,6 @@ require 'session.php';
 
 <link rel="stylesheet" type="text/css" href="css/slicknav.css">
 
-
 <link rel="stylesheet" type="text/css" href="css/nivo-lightbox.css">
 
 <link rel="stylesheet" type="text/css" href="css/animate.css">

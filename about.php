@@ -76,79 +76,7 @@ include 'navbar.php';
 </div>
 </section>
 
-<!--
-<section class="testimonial section-padding">
-<div class="container">
-<div class="row">
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-<div id="testimonials" class="owl-carousel">
-<div class="item">
-<div class="testimonial-item">
-<div class="img-thumb">
-<img src="img/testimonial/img1.png" alt="">
-</div>
-<div class="content">
-<h2><a href="#">John Doe</a></h2>
-<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quidem, excepturi facere magnam illum, at accusantium doloremque odio.</p>
-<h3>Developer at of <a href="#">xyz company</a></h3>
- </div>
-</div>
-</div>
-<div class="item">
-<div class="testimonial-item">
-<div class="img-thumb">
-<img src="img/testimonial/img2.png" alt="">
-</div>
-<div class="content">
-<h2><a href="#">Jessica</a></h2>
-<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quidem, excepturi facere magnam illum, at accusantium doloremque odio.</p>
-<h3>Developer at of <a href="#">xyz company</a></h3>
-</div>
-</div>
-</div>
-<div class="item">
-<div class="testimonial-item">
-<div class="img-thumb">
-<img src="img/testimonial/img3.png" alt="">
-</div>
-<div class="content">
-<h2><a href="#">Johnny Zeigler</a></h2>
-<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quidem, excepturi facere magnam illum, at accusantium doloremque odio.</p>
-<h3>Developer at of <a href="#">xyz company</a></h3>
-</div>
-</div>
-</div>
-<div class="item">
-<div class="testimonial-item">
-<div class="img-thumb">
-<img src="img/testimonial/img1.png" alt="">
-</div>
-<div class="content">
-<h2><a href="#">John Doe</a></h2>
-<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quidem, excepturi facere magnam illum, at accusantium doloremque odio.</p>
-<h3>Developer at of <a href="#">xyz company</a></h3>
-</div>
-</div>
-</div>
-<div class="item">
-<div class="testimonial-item">
-<div class="img-thumb">
-<img src="img/testimonial/img2.png" alt="">
-</div>
-<div class="content">
-<h2><a href="#">Jessica</a></h2>
-<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quidem, excepturi facere magnam illum, at accusantium doloremque odio.</p>
-<h3>Developer at of <a href="#">xyz company</a></h3>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
 
--->
 <section class="services section-padding">
 <div class="container">
 <div class="row about-func">
@@ -188,43 +116,7 @@ include 'navbar.php';
 </div>
 </div>
 </div>
-<!--
-<div class="col-md-6 col-lg-4 col-xs-12">
-<div class="services-item wow fadeInRight" data-wow-delay="0.8s">
-<div class="icon">
-<i class="lni-cog"></i>
-</div>
-<div class="services-content">
-<h3><a href="#">Completely Customizable</a></h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo aut magni perferendis repellat rerum assumenda facere.</p>
-</div>
-</div>
-</div>
 
-<div class="col-md-6 col-lg-4 col-xs-12">
-<div class="services-item wow fadeInRight" data-wow-delay="1.2s">
-<div class="icon">
-<i class="lni-layout"></i>
-</div>
-<div class="services-content">
-<h3><a href="#">Awesome Layout</a></h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo aut magni perferendis repellat rerum assumenda facere.</p>
-</div>
-</div>
-</div>
-
-<div class="col-md-6 col-lg-4 col-xs-12">
-<div class="services-item wow fadeInRight" data-wow-delay="0.2s">
-<div class="icon">
-<i class="lni-book"></i>
-</div>
-<div class="services-content">
-<h3><a href="#">Full Documented</a></h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo aut magni perferendis repellat rerum assumenda facere.</p>
-</div>
-</div>
-</div>
--->
 </div>
 </div>
 </section>

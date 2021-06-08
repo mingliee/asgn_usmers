@@ -95,7 +95,7 @@ require_once 'email/sendEmail.php';
         echo 'sql:'.$query;
         if(mysqli_query($conn, $query)){
             // TO DO: send verification email to user
-            sendVerificationEmail($user_email, $token);
+            //sendVerificationEmail($user_email, $token);
 
             session_start();
             $_SESSION['userEmail']=$user_email;

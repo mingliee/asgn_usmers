@@ -46,10 +46,15 @@ require 'config.php';
             $adsTable="ADS_ACCOM";
             $imgTable="IMAGE_ACCOM";
             $tenet=$_POST['tenet'];
+            $n = count($tenet);
+            $tenetPref = "";
+            for($i=0;$i<$n;$i++){
+                $tenetPref.=$tenet[$i]." ";
+            }
 
             $updateAdSQL="UPDATE ADS_ACCOM SET ADS_STATUS='$status',ADS_TITLE='$title', ADS_PRICE='$price',
                 ADS_DESCP='$store_descp',ADS_LOC='$ads_loc', ADS_AREA='$other_loc', 
-                ACCM_TENET_PREF='$tenet',
+                ACCM_TENET_PREF='$tenetPref',
                 ADS_LATEST_UPDATE_DATE=NOW() WHERE ADS_ID='$ads_id'";
 
         } else if (strpos($ads_id, 'AJ') !== false) {
@@ -360,8 +365,8 @@ require 'config.php';
                 $deal.=$dealMethod[$i]." ";
             }
 
-            $insertAdSQL="INSERT INTO ADS_ITEM (ADS_ID,ADS_STATUS,ADS_TITLE,ADS_CAT,ADS_PRICE,ADS_DESCP,ADS_LOC,ADS_AREA,USER_ID,ITEM_CONDITION,ITEM_DEAL_METHOD) 
-                        values ('$adsid','ACTIVE', '$title','$category_group','$price','$store_descp', '$ads_loc', '$other_loc', '$userid','$condition','$deal')";
+            $insertAdSQL="INSERT INTO ADS_ITEM (ADS_ID,ADS_STATUS,ADS_TITLE,ADS_CAT,ADS_PRICE,ADS_DESCP,ADS_LOC,ADS_AREA,USER_ID,ITEM_CONDITION,ITEM_DEAL_METHOD,PRIVATE_STATUS) 
+                        values ('$adsid','ACTIVE', '$title','$category_group','$price','$store_descp', '$ads_loc', '$other_loc', '$userid','$condition','$deal','ACTIVE')";
             
             //$adsIdSQL = "SELECT ADS_ID FROM ADS_ITEM WHERE ADS_TITLE LIKE '$title' AND USER_ID LIKE '$userid'";
 
@@ -385,8 +390,8 @@ require 'config.php';
                 $tenetPref.=$tenet[$i]." ";
             }
 
-            $insertAdSQL="INSERT INTO ADS_ACCOM (ADS_ID,ADS_STATUS,ADS_TITLE,ADS_CAT,ADS_PRICE,ADS_DESCP,ADS_LOC,ADS_AREA,USER_ID,ACCM_TENET_PREF) 
-                        values ('$adsid','ACTIVE', '$title','$category_group','$price','$store_descp', '$ads_loc', '$other_loc', '$userid','$tenetPref')";
+            $insertAdSQL="INSERT INTO ADS_ACCOM (ADS_ID,ADS_STATUS,ADS_TITLE,ADS_CAT,ADS_PRICE,ADS_DESCP,ADS_LOC,ADS_AREA,USER_ID,ACCM_TENET_PREF,PRIVATE_STATUS) 
+                        values ('$adsid','ACTIVE', '$title','$category_group','$price','$store_descp', '$ads_loc', '$other_loc', '$userid','$tenetPref','ACTIVE')";
             
         } else if(strpos($category_group,'job')  !== false){
 
@@ -404,8 +409,8 @@ require 'config.php';
             $contract_type=$_POST['contract_type'];
             $salary_type=$_POST['salary_type'];
 
-            $insertAdSQL="INSERT INTO ADS_JOB (ADS_ID,ADS_STATUS,ADS_TITLE,ADS_CAT,ADS_PRICE,ADS_DESCP,ADS_LOC,ADS_AREA,USER_ID,JOB_CONTRACT_TYPE,JOB_SALARY_TYPE) 
-                        values ('$adsid','ACTIVE', '$title','$category_group','$price','$store_descp', '$ads_loc', '$other_loc', '$userid','$contract_type','$salary_type')";
+            $insertAdSQL="INSERT INTO ADS_JOB (ADS_ID,ADS_STATUS,ADS_TITLE,ADS_CAT,ADS_PRICE,ADS_DESCP,ADS_LOC,ADS_AREA,USER_ID,JOB_CONTRACT_TYPE,JOB_SALARY_TYPE,PRIVATE_STATUS) 
+                        values ('$adsid','ACTIVE', '$title','$category_group','$price','$store_descp', '$ads_loc', '$other_loc', '$userid','$contract_type','$salary_type','ACTIVE')";
             
             //$adsIdSQL = "SELECT ADS_ID FROM ADS_JOB WHERE ADS_TITLE LIKE '$title' AND USER_ID LIKE '$userid'";
 
@@ -729,17 +734,64 @@ require 'config.php';
         $updateResult=false;
         $avatarID=$_POST['avatarID'];
         $user_email=$_SESSION['userEmail'];
+        echo 'imagesize:'.$_FILES['profileImage']['size'].'<br>';
 
         if($_FILES['profileImage']['size'] == 0){
             $avatar_name="back.jpg";
             $avatar_id=null;
             $insertImgResult=true;
+
+            //if current avatar is available
+            //unlink current avatar from src folder
+            if($avatarID!='0'){
+                $query = "SELECT * FROM AVATAR WHERE AVATAR_ID='$avatarID'";
+                $result = mysqli_query($conn,$query);
+                echo 'query:'.$query.'<br>';
+
+                //unlink current avatar
+                while ($delete = mysqli_fetch_array($result)) {
+                    $image = $delete['AVATAR_NAME'];
+                    $file= "img/avatar/".$image;
+                    unlink($file);
+                }
+
+                //set avatar to null in user table
+                $insertAvatarIDSQL="UPDATE USER SET AVATAR_ID='$avatar_id' WHERE USER_EMAIL='$user_email'";
+                $insertAvatarIDResult = mysqli_query($conn,$insertAvatarIDSQL);
+                echo 'insertAvatarIDSQL: '.$insertAvatarIDSQL.'<br/>';
+
+                //delete data in avatar table
+                $deleteAvatarSQL="DELETE FROM AVATAR WHERE AVATAR_ID='$avatarID'";
+                $deleteAvatarResult = mysqli_query($conn,$deleteAvatarSQL);
+                echo 'deleteAvatarSQL: '.$deleteAvatarSQL.'<br/>';
+
+                if($insertAvatarIDResult&&$deleteAvatarResult){
+                    echo 'delete sucessfully';
+                    header("Location:account-profile-setting.php?update=success");
+                    exit();
+                }else{
+                    echo 'Delete Image Fail<br/>';
+                    echo 'Error: '.mysqli_error($conn);
+                    header("Location:account-profile-setting.php?update=error");
+                }
+                    
+            }else{
+
+            }
+
         }else{
             $targetPath="img/avatar/";
             $validextensions = array("jpeg", "jpg", "png");
             $ext = explode('.', basename($_FILES['profileImage']['name'])); //explode file name from dot(.) 
             $file_extension = end($ext); //store extensions in the variable
-
+            
+            $avatar_name = date("dmY-His"); 
+            $avatar_name .= basename($_FILES['profileImage']['name']);
+            $avatar_name = mysqli_real_escape_string($conn,$avatar_name);
+    
+            $avatar=$_FILES['profileImage']['name'];
+            $targetPath = $targetPath.$avatar_name; //set the target path with a new name of avatar 
+            echo 'targetPath:'.$targetPath.'<br>';
                
             echo 'avatarID:'.$avatarID.'<br>';
             //if current avatar is available
@@ -752,17 +804,10 @@ require 'config.php';
                 //unlink current avatar
                 while ($delete = mysqli_fetch_array($result)) {
                     $image = $delete['AVATAR_NAME'];
-                    $file= $targetPath.$image;
+                    $file= "img/avatar/".$image;
                     unlink($file);
                 }
 
-                $avatar_name = date("dmY-His"); 
-                $avatar_name .= basename($_FILES['profileImage']['name']);
-                $avatar_name = mysqli_real_escape_string($conn,$avatar_name);
-        
-                $avatar=$_FILES['profileImage']['name'];
-                $targetPath = $targetPath.$avatar_name; //set the target path with a new name of avatar 
-                
                 //update avatar file in db
                 if (move_uploaded_file($_FILES['profileImage']['tmp_name'], $targetPath)) { //if file moved to uploads folder
                     $updateAvatarSQL = "UPDATE AVATAR SET AVATAR_NAME='$avatar_name',AVATAR_FILE='$avatar' 
@@ -792,12 +837,13 @@ require 'config.php';
                 $avatarIDSQL="(SELECT IFNULL (CONCAT('A',LPAD((SUBSTRING_INDEX
                 (MAX(`avatar_id`), 'A',-1) + 1), 5, '0')), 'A')
                 AS 'IDNUMBER' FROM `AVATAR` ORDER BY `avatar_id` ASC)";
-                $adsIDResult=mysqli_query($conn,$avatarIDSQL);
+                $avatarIDResult=mysqli_query($conn,$avatarIDSQL);
 
-                if ( mysqli_num_rows($adsIDResult)){
-                    $row = mysqli_fetch_array($adsIDResult);
+                if ( mysqli_num_rows($avatarIDResult)){
+                    $row = mysqli_fetch_array($avatarIDResult);
                     $avatar_id=$row['IDNUMBER'];
                 }
+                echo 'avatar_id'.$avatar_id.'<br>';
 
                 //insert avatar file in db
                 if (move_uploaded_file($_FILES['profileImage']['tmp_name'], $targetPath)) { //if file moved to uploads folder
@@ -837,6 +883,56 @@ require 'config.php';
             
             
         }
+    }
+
+
+    if(isset($_POST['chgPswd_btn'])){
+        echo '=========chgPswd_btn==========<br/>';
+        $updateResult=false;
+        
+        $user_pswd=$_POST['user_pswd'];
+        $new_pswd=$_POST['new_pswd'];
+        $user_email=$_SESSION['userEmail'];
+
+        //CHECK CURRENT PASSWORD
+        $getPswdSQL="SELECT USER_PSWD FROM USER WHERE USER_EMAIL='$user_email'";
+        $getPswdResult=mysqli_query($conn,$getPswdSQL);
+
+        if ( mysqli_num_rows($getPswdResult)){
+            $row = mysqli_fetch_array($getPswdResult);
+            $currentPswd=$row['USER_PSWD'];
+        }else{
+            echo '<br/>---FAIL updateResult---';
+            header("Location:account-profile-setting.php?change=error");
+            exit();
+        }    
+
+        if($currentPswd===$new_pswd){ //return error if new pswd = current pswd
+
+            echo '<br/>---FAIL updateResult---';
+            header("Location:account-profile-setting.php?change=incorrect");
+            exit();
+
+        }else if($currentPswd===$user_pswd){ //chg pswd if current pswd matched
+            //UPDATE PSWD
+            $updatePswdSQL="UPDATE USER SET USER_PSWD='$new_pswd' WHERE USER_EMAIL='$user_email'";
+            $updateResult=mysqli_query($conn,$updatePswdSQL);
+            
+            echo 'updatePswdSQL:'.$updatePswdSQL;
+            echo '<br/>updateResult:'.$updateResult;
+
+            if($updateResult){
+                echo '<br/>---SUCCESS updateResult---';
+                header("Location:account-profile-setting.php?change=success");
+                exit();
+            }else{
+                echo '<br/>---FAIL updateResult---';
+                header("Location:account-profile-setting.php?change=error");
+                exit();
+            }
+        }
+
+
     }
 
 

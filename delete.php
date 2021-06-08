@@ -14,13 +14,12 @@ if(isset($_GET['id']))
      } else if (strpos($ads_id, 'AA') !== false) {
           $adsTable="ADS_ACCOM";
           $imgTable="IMAGE_ACCOM";
-          $subSql = "DELETED_ADS.SUB_INFO_1=ADS_ACCOM.ITEM_CONDITION,
-                    DELETED_ADS.SUB_INFO_2=ADS_ACCOM.ITEM_DEAL_METHOD";
+          $subSql = "DELETED_ADS.SUB_INFO_1=ADS_ACCOM.ACCM_TENET_PREF";
      } else if (strpos($ads_id, 'AJ') !== false) {
           $adsTable="ADS_JOB";
           $imgTable="IMAGE_JOB";
-          $subSql = "DELETED_ADS.SUB_INFO_1=ADS_JOB.ITEM_CONDITION,
-                    DELETED_ADS.SUB_INFO_2=ADS_JOB.ITEM_DEAL_METHOD";
+          $subSql = "DELETED_ADS.SUB_INFO_1=ADS_JOB.JOB_CONTRACT_TYPE ,
+                    DELETED_ADS.SUB_INFO_2=ADS_JOB.JOB_SALARY_TYPE ";
      }
 
      // move data from ori image table to deleted table
@@ -97,7 +96,7 @@ if(isset($_GET['id']))
                     DELETED_ADS.ADS_LATEST_UPDATE_DATE=$adsTable.ADS_LATEST_UPDATE_DATE,
                     DELETED_ADS.USER_ID=$adsTable.USER_ID,
                     DELETED_ADS.PRIVATE_STATUS=$adsTable.PRIVATE_STATUS,
-                    DELETED_ADS.ADMIN_UPDATE_DATE=$adsTable.ADMIN_UPDATE_DATE,";
+                    DELETED_ADS.DELETED_DATE=$adsTable.DELETED_DATE,";
      $moveAdSql .= $subSql;
      $moveAdSql .= " WHERE DELETED_ADS.ADS_ID='$ads_id' AND $adsTable.ADS_ID='$ads_id'";
 

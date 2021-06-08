@@ -181,8 +181,8 @@ $ads_id=$_GET['adsID'];
     <?php if($adsTable==='ADS_ACCOM') {?>
     <div class="form-group mb-3" id="tenet_div">
         <label class="control-label">Tenet Preference*</label><br>
-        <label class ="tenet"><input type="checkbox" name="tenet[]" id="checkMale" value="male" <?php if (strpos($row['ACCM_TENET_PREF'], 'male') !== false) echo 'checked'; ?>>  Male</label>
-        <label class ="tenet"><input type="checkbox" name="tenet[]" id="checkFemale" value="female" <?php if (strpos($row['ACCM_TENET_PREF'], 'female') !== false) echo 'checked'; ?>>  Female</label><br/>            
+        <label class ="tenet"><input type="checkbox" name="tenet[]" id="checkMale" value="m" <?php if (strpos($row['ACCM_TENET_PREF'], 'm') !== false) echo 'checked'; ?>>  Male</label>
+        <label class ="tenet"><input type="checkbox" name="tenet[]" id="checkFemale" value="f" <?php if (strpos($row['ACCM_TENET_PREF'], 'f') !== false) echo 'checked'; ?>>  Female</label><br/>            
         <span class="required error" id="tenet-info"></span>
     </div>
     <?php } ?>

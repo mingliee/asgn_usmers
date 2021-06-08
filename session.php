@@ -12,6 +12,18 @@ if (isset($_SESSION["userEmail"])) {
     }else{
         $_SESSION['admin']='0';
     }
+    $revokedSQL="SELECT USER_STATUS FROM USER WHERE USER_EMAIL='$userEmail'";
+    $revoked=(mysqli_query($conn,$revokedSQL));
+    if ( mysqli_num_rows($revoked)){
+        $row = mysqli_fetch_array($revoked);
+        $r=$row['USER_STATUS'];
+    }
+    if($r=="A")
+    {
+        $_SESSION['revoked']='0';
+    }else{
+        $_SESSION['revoked']='1';
+    }
 
     session_write_close();
 } else {
@@ -24,5 +36,4 @@ if (isset($_SESSION["userEmail"])) {
     header("Location: $url");
 }
 //print_r($_SESSION);
-
 ?>

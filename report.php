@@ -133,7 +133,7 @@ Report Form
                    
                     while($row2= mysqli_fetch_array($r2)){
                             echo '<option value="'.$row2['REASON_VALUE'].'" >';
-                            echo $row2['REASON_DESCP'].' </option>';
+                            echo $row2['REASON_NAME'].' </option>';
 
                     }
                     //$loca=$row['ADS_LOC'];
@@ -184,40 +184,42 @@ Report Form
 
 
 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
-<h2 class="contact-title">
-Get In Touch
-</h2>
-<div class="information">
-<p>USMers' is a marketplace which provided speacially for USM community.</p>
-<div class="contact-datails">
-<div class="icon">
-<i class="lni-map-marker icon-radius"></i>
-</div>
-<div class="info">
-<h3>Address</h3>
-<span class="detail">School of Computer Sciences<br> Universiti Sains Malaysia<br>11800 USM, Penang, Malaysia</span>
-</div>
-</div>
-<div class="contact-datails">
-<div class="icon">
-<i class="lni-pointer icon-radius"></i>
-</div>
-<div class="info">
-<h3>Email</h3>
-<span class="detail"><a href="#" class="__cf_email__" data-cfemail="b9eaccc9c9d6cbcdf9d4d8d0d597dad6d4">usmers@gmail.com</a></span>
-</div>
-</div>
+    <h2 class="contact-title">
+    Get In Touch
+    </h2>
 
-<div class="contact-datails">
-<div class="icon">
-<i class="lni-phone icon-radius"></i>
-</div>
-<div class="info">
-<h3>Telephone</h3>
-<span class="detail">(+60) 4653 4646</span>
-</div>
-</div>
-</div>
+    <div class="information">
+        <p>
+            USMers' is a marketplace which provided speacially for USM community.
+        </p>
+        <div class="contact-datails">
+            <div class="icon">
+                <i class="lni-map-marker icon-radius"></i>
+            </div>
+            <div class="info">
+                <h3>Address</h3>
+                <span class="detail">School of Computer Sciences<br> Universiti Sains Malaysia<br>11800 USM, Penang, Malaysia</span>
+            </div>
+        </div>
+        <div class="contact-datails">
+            <div class="icon">
+                <i class="lni-pointer icon-radius"></i>
+            </div>
+            <div class="info">
+                <h3>Email</h3>
+                <span class="detail"><a href="#" class="__cf_email__" data-cfemail="b9eaccc9c9d6cbcdf9d4d8d0d597dad6d4">usmers@gmail.com</a></span>
+            </div>
+        </div>
+        <div class="contact-datails">
+            <div class="icon">
+                <i class="lni-phone icon-radius"></i>
+            </div>
+            <div class="info">
+                <h3>Telephone</h3>
+                <span class="detail">(+60) 4653 4646</span>
+            </div>
+        </div>
+    </div>
 </div>
 </div>
 </div>
