@@ -64,6 +64,9 @@ $('document').ready(function(){
     $('#retype_pswd').on('blur', function(){
         valRetypePswd();
     });
+    $('#retype_pswd').on('keyup', function(){
+        valRetypePswd();
+    });
 });
 
 function valPhone(){
@@ -294,6 +297,27 @@ function loginValidation() {
 		$("#user_pswd").addClass("error-field");
 		valid = false;
 	}
+	if (valid == false) {
+		$('.error-field').first().focus();
+		valid = false;
+	}
+	return valid;
+}
+
+function forgetPswdVal(){
+	var valid = true;
+	$("#user_email").removeClass("error-field");
+
+	var Email = $("#user_email").val();
+
+	$("#user_email-info").html("").hide();
+
+	if (Email.trim() == "") {
+		$("#user_email-info").html("Required").css("color", "#ee0000").show();
+		$("#username").addClass("error-field");
+		valid = false;
+	}
+
 	if (valid == false) {
 		$('.error-field').first().focus();
 		valid = false;

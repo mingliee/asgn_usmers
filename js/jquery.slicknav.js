@@ -18,7 +18,38 @@
     btn.addClass(prefix+'_animating');$this._visibilityToggle(mobileNav,btn.parent(),true,btn);};Plugin.prototype._itemClick=function(el){var $this=this;var settings=$this.settings;var data=el.data('menu');if(!data){data={};data.arrow=el.children('.'+prefix+'_arrow');data.ul=el.next('ul');data.parent=el.parent();if(data.parent.hasClass(prefix+'_parent-link')){data.parent=el.parent().parent();data.ul=el.parent().next('ul');}
     el.data('menu',data);}
     if(data.parent.hasClass(prefix+'_collapsed')){data.arrow.html(settings.openedSymbol);data.parent.removeClass(prefix+'_collapsed');data.parent.addClass(prefix+'_open');data.parent.addClass(prefix+'_animating');$this._visibilityToggle(data.ul,data.parent,true,el);}else{data.arrow.html(settings.closedSymbol);data.parent.addClass(prefix+'_collapsed');data.parent.removeClass(prefix+'_open');data.parent.addClass(prefix+'_animating');$this._visibilityToggle(data.ul,data.parent,true,el);}};Plugin.prototype._visibilityToggle=function(el,parent,animate,trigger,init){var $this=this;var settings=$this.settings;var items=$this._getActionItems(el);var duration=0;if(animate){duration=settings.duration;}
-    if(el.hasClass(prefix+'_hidden')){el.removeClass(prefix+'_hidden');if(!init){settings.beforeOpen(trigger);}
-    el.slideDown(duration,settings.easingOpen,function(){$(trigger).removeClass(prefix+'_animating');$(parent).removeClass(prefix+'_animating');if(!init){settings.afterOpen(trigger);}});el.attr('aria-hidden','false');items.attr('tabindex','0');$this._setVisAttr(el,false);}else{el.addClass(prefix+'_hidden');if(!init){settings.beforeClose(trigger);}
-    el.slideUp(duration,this.settings.easingClose,function(){el.attr('aria-hidden','true');items.attr('tabindex','-1');$this._setVisAttr(el,true);el.hide();$(trigger).removeClass(prefix+'_animating');$(parent).removeClass(prefix+'_animating');if(!init){settings.afterClose(trigger);}else if(trigger=='init'){settings.init();}});}};Plugin.prototype._setVisAttr=function(el,hidden){var $this=this;var nonHidden=el.children('li').children('ul').not('.'+prefix+'_hidden');if(!hidden){nonHidden.each(function(){var ul=$(this);ul.attr('aria-hidden','false');var items=$this._getActionItems(ul);items.attr('tabindex','0');$this._setVisAttr(ul,hidden);});}else{nonHidden.each(function(){var ul=$(this);ul.attr('aria-hidden','true');var items=$this._getActionItems(ul);items.attr('tabindex','-1');$this._setVisAttr(ul,hidden);});}};Plugin.prototype._getActionItems=function(el){var data=el.data("menu");if(!data){data={};var items=el.children('li');var anchors=items.find('a');data.links=anchors.add(items.find('.'+prefix+'_item'));el.data('menu',data);}
+    if(el.hasClass(prefix+'_hidden')){
+        el.removeClass(prefix+'_hidden');
+        if(!init){
+            settings.beforeOpen(trigger);
+        }
+        el.slideDown(duration,settings.easingOpen,function(){
+            $(trigger).removeClass(prefix+'_animating');
+            $(parent).removeClass(prefix+'_animating');
+            if(!init){
+                settings.afterOpen(trigger);
+            }
+        });
+        el.attr('aria-hidden','false');
+        items.attr('tabindex','0');
+        $this._setVisAttr(el,false);
+    }else{
+        el.addClass(prefix+'_hidden');
+        if(!init){
+            settings.beforeClose(trigger);
+        }
+        el.slideUp(duration,this.settings.easingClose,function(){
+            el.attr('aria-hidden','true');
+            items.attr('tabindex','-1');
+            $this._setVisAttr(el,true);el.hide();
+            $(trigger).removeClass(prefix+'_animating');
+            $(parent).removeClass(prefix+'_animating');
+            if(!init){
+                settings.afterClose(trigger);
+            }else if(trigger=='init'){
+                settings.init();
+            }
+        });
+    }
+};Plugin.prototype._setVisAttr=function(el,hidden){var $this=this;var nonHidden=el.children('li').children('ul').not('.'+prefix+'_hidden');if(!hidden){nonHidden.each(function(){var ul=$(this);ul.attr('aria-hidden','false');var items=$this._getActionItems(ul);items.attr('tabindex','0');$this._setVisAttr(ul,hidden);});}else{nonHidden.each(function(){var ul=$(this);ul.attr('aria-hidden','true');var items=$this._getActionItems(ul);items.attr('tabindex','-1');$this._setVisAttr(ul,hidden);});}};Plugin.prototype._getActionItems=function(el){var data=el.data("menu");if(!data){data={};var items=el.children('li');var anchors=items.find('a');data.links=anchors.add(items.find('.'+prefix+'_item'));el.data('menu',data);}
     return data.links;};Plugin.prototype._outlines=function(state){if(!state){$('.'+prefix+'_item, .'+prefix+'_btn').css('outline','none');}else{$('.'+prefix+'_item, .'+prefix+'_btn').css('outline','');}};Plugin.prototype.toggle=function(){var $this=this;$this._menuToggle();};Plugin.prototype.open=function(){var $this=this;if($this.btn.hasClass(prefix+'_collapsed')){$this._menuToggle();}};Plugin.prototype.close=function(){var $this=this;if($this.btn.hasClass(prefix+'_open')){$this._menuToggle();}};$.fn[mobileMenu]=function(options){var args=arguments;if(options===undefined||typeof options==='object'){return this.each(function(){if(!$.data(this,'plugin_'+mobileMenu)){$.data(this,'plugin_'+mobileMenu,new Plugin(this,options));}});}else if(typeof options==='string'&&options[0]!=='_'&&options!=='init'){var returns;this.each(function(){var instance=$.data(this,'plugin_'+mobileMenu);if(instance instanceof Plugin&&typeof instance[options]==='function'){returns=instance[options].apply(instance,Array.prototype.slice.call(args,1));}});return returns!==undefined?returns:this;}};}(jQuery,document,window));
