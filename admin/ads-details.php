@@ -182,14 +182,70 @@ if (strpos($adsID, 'AI') !== false) {
         
             <?php 
                 $q1 ="SELECT * FROM `".$adsTable."` 
-                    INNER JOIN `".$imgTable."` ON (".$imgTable.".ADS_ID=".$adsTable.".ADS_ID) 
+                    LEFT JOIN `".$imgTable."` ON (".$imgTable.".ADS_ID=".$adsTable.".ADS_ID) 
                     WHERE ".$adsTable.".ADS_ID = '$adsID' 
                     AND ".$imgTable.".IMAGE_STATUS='ACTIVE' ";
                 $r1=mysqli_query($conn,$q1);
                 $rowcount=mysqli_num_rows($r1);
 /*                 echo 'q1:'.$q1.'<br>';
-                echo 'rowcount:'.$rowcount.'<br>'; */
-                if($rowcount==1){
+                echo 'rowcount:'.$rowcount.'<br>';
+ */              if($rowcount==0){
+                  $q ="SELECT * FROM `DELETED_ADS` 
+                    LEFT JOIN `DELETED_IMAGE` ON (DELETED_IMAGE.ADS_ID=DELETED_ADS.ADS_ID) 
+                    WHERE DELETED_ADS.ADS_ID = '$adsID' ";
+                  $r = mysqli_query($conn,$q);
+                 // echo 'q:'.$q.'<br>';
+
+                 //if more thn 1 pic
+                 if(mysqli_num_rows($r)>1){
+                  $x=0;
+                    echo '<div class="owl-carousel owl-theme full-width">';
+                    while($row = mysqli_fetch_assoc($r)){
+                        $x++;
+                        $image = $row['IMAGE_NAME'];
+                        if($image==null){
+                          $imglink="../img/back.jpg";
+                        }else{
+                          $imglink="../img/product/".$image;
+                        }
+                        $ads_status=$row['ADS_STATUS'];
+
+                        
+                        echo '<div class="img-1">
+                        <div class="img-2">
+                        <img class="item img-fluid" src="'.$imglink.'" alt="banner image" />';
+                        if($ads_status=='SOLD'){ echo '<div class="overlay lay-sold" >SOLD</div>';}
+                        else if($ads_status=='DELETED'){ echo '<div class="overlay lay-deleted" >DELETED</div>';}
+                        else if($ads_status=='RESERVED'){ echo '<div class="overlay lay-reserved" >RESERVED</div>';}
+                        else if($ads_status=='INACTIVE'){ echo '<div class="overlay lay-inactive" >INACTIVE</div>';}
+                        echo '</div>
+                        </div>';
+                    }
+                    echo '</div>';
+                 }else{
+                  echo '<div class="">';
+                  while($row = mysqli_fetch_assoc($r)){
+                      $image = $row['IMAGE_NAME'];
+                      if($image==null){
+                        $imglink="../img/back.jpg";
+                      }else{
+                        $imglink="../img/product/".$image;
+                      }
+                      $ads_status=$row['ADS_STATUS'];
+                      echo '<div class="img-1">
+                      <div class="img-2">
+                      <img class="item img-fluid" src="'.$imglink.'" alt="ad image" />';
+                      if($ads_status=='SOLD'){ echo '<div class="overlay lay-sold" >SOLD</div>';}
+                      else if($ads_status=='DELETED'){ echo '<div class="overlay lay-deleted" >DELETED</div>';}
+                      else if($ads_status=='RESERVED'){ echo '<div class="overlay lay-reserved" >RESERVED</div>';}
+                      else if($ads_status=='INACTIVE'){ echo '<div class="overlay lay-inactive" >INACTIVE</div>';}
+                      echo '</div>
+                      </div>';
+                  }
+                  echo '</div>';
+                 }
+                  
+                }else if($rowcount==1){
                     echo '<div class="">';
                     while($row = mysqli_fetch_assoc($r1)){
                         $image = $row['IMAGE_NAME'];
@@ -243,7 +299,21 @@ $r1=mysqli_query($conn,$q1);
 
 $i=0;
 $edit="true";
-while($row = mysqli_fetch_assoc($r1)){
+
+//if unable to find ads from job/accom/item table
+//get data from deleted_ads table
+if(mysqli_num_rows($r1)==0){
+
+  $q4 ="SELECT * FROM `DELETED_ADS` 
+  INNER JOIN `USER` ON (DELETED_ADS.USER_ID=USER.USER_ID) 
+  INNER JOIN `CATEGORY` ON (DELETED_ADS.ADS_CAT=CATEGORY.CAT_VALUE) 
+  INNER JOIN `ABBR` ON (DELETED_ADS.SUB_INFO_1=ABBR.ABBR_VALUE) 
+  OR (DELETED_ADS.SUB_INFO_2 =ABBR.ABBR_VALUE)
+  where ADS_ID = '$adsID' ";
+  $r4=mysqli_query($conn,$q4);
+
+  //echo 'q4:'.$q4.'<br>';
+  while($row = mysqli_fetch_assoc($r4)){
     $userEmail=$row['USER_EMAIL'];
     $ads_id = $row['ADS_ID'];
     $ads_status=$row['ADS_STATUS'];
@@ -285,6 +355,53 @@ while($row = mysqli_fetch_assoc($r1)){
     $urlencodedtext = str_replace(' ', '%20', $text);
     $i++;
 }
+
+}else{
+
+  while($row = mysqli_fetch_assoc($r1)){
+    $userEmail=$row['USER_EMAIL'];
+    $ads_id = $row['ADS_ID'];
+    $ads_status=$row['ADS_STATUS'];
+    $privateStatus=$row['PRIVATE_STATUS'];
+    if($ads_status=="SOLD" || $ads_status=="DELETED"){
+        $edit="false";
+    }
+
+    $name = $row ['ADS_TITLE'];
+    $name = str_replace( '"',"'", $name);
+    $price = $row['ADS_PRICE'];
+    if($price=='0'){
+        $free="true";
+        $price="FREE";
+    }else{
+        $free="false";
+    }
+    $price=str_ireplace('.00','',$price);
+
+    $descp = $row['ADS_DESCP'];
+    $descp = str_replace( '"',"'", $descp);
+    $loc = $row['ADS_LOC'];
+    if($loc=='ou'||$loc=='op'||$loc=='ou'){
+        $loc = $row['ADS_AREA'];
+    }
+    
+    $cat = $row['CAT_NAME'];
+    //$cat = strtok($cat, " ");
+    $cat_value=$row['ADS_CAT'];
+    $sub[$i]=$row['ABBR_NAME'];
+    $date=$row['ADS_PUBLISH_DATE'];
+    // $date = date("j M y g:i a",strtotime($date);
+    $seller = $row ['USER_NAME'];
+    $sellerID=$row['USER_ID'];
+    $phoneNo = $row['WHATSAPP'];
+    $text="Hi, I'm interested in your ads *(";
+    $text .= $name;
+    $text .= ")* in _Usmers'_";
+    $urlencodedtext = str_replace(' ', '%20', $text);
+    $i++;
+}
+}
+
 
 ?>
           <div class="col-lg-6">
@@ -334,7 +451,7 @@ while($row = mysqli_fetch_assoc($r1)){
             <span><strong>ADMIN ONLY:</strong></span><br>
             <div class="d-flex justify-content-between">
             <?php 
-            $q2 ="SELECT * FROM `ADS_MANAGEMENT` where ADS_ID = '$adsID' ORDER BY `TIME` DESC LIMIT 1";
+            $q2 ="SELECT * FROM `ADS_MANAGEMENT`  INNER JOIN USER ON (USER.USER_ID=ADS_MANAGEMENT.PIC) where ADS_MANAGEMENT.ADS_ID = '$adsID' ORDER BY `TIME` DESC LIMIT 1";
             $r2=mysqli_query($conn,$q2);
             //echo 'q2: '.$q2;
 
@@ -343,7 +460,7 @@ while($row = mysqli_fetch_assoc($r1)){
                 $action=$row['ACTION'];
                 $adminDescp = $row['DESCP'];
                 $time=$row['TIME'];
-                $pic = $row['PIC'];
+                $pic = $row['USER_NAME'];
 
                 echo '<div><strong><u>Latest Update Info</u></strong><br>';
                 echo 'Action Done: '.$action.'<br>';
@@ -356,7 +473,7 @@ while($row = mysqli_fetch_assoc($r1)){
             echo '-';
             
             ?>
-            <div class="a-flex justify-content-between">
+            <div class="a-flex justify-content-between" id="remark">
               <?php if($ads_status==='ACTIVE'||$ads_status==='RESERVED'||$ads_status==='INACTIVE'){
                 if($privateStatus==='ACTIVE'){ ?>
                 <button class="btn btn-gradient-danger actionBtn" id="actionBtn" onclick="showSwal('delete','<?php echo $ads_id; ?>','<?php echo $admin; ?>')">Delete Ad</button>
@@ -369,8 +486,6 @@ while($row = mysqli_fetch_assoc($r1)){
             </div>
             </div>
 
-
-
             </div>
           </div>
           </div>
@@ -382,8 +497,8 @@ while($row = mysqli_fetch_assoc($r1)){
 </div>
 <footer class="footer">
 <div class="container-fluid clearfix">
-<span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2020 <a href="http://www.bootstrapdash.com/" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
-<span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i>
+<span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © USMers' 2020/2021</span>
+
 </span>
 </div>
 </footer>      

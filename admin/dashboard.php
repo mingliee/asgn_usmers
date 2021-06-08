@@ -390,6 +390,7 @@ require 'session.php';
               $retrieveReportSQL="SELECT * FROM REPORT 
                                   INNER JOIN USER ON (REPORT.REPORTED_BY_USER_ID=USER.USER_ID )
                                   INNER JOIN REPORT_REASON ON (REPORT.REASON=REPORT_REASON.REASON_VALUE)
+                                  LEFT JOIN AVATAR ON (USER.AVATAR_ID=AVATAR.AVATAR_ID)
                                   WHERE REPORT.STATUS LIKE 'OPEN'
                                   OR REPORT.STATUS LIKE 'ON HOLD'
                                   OR REPORT.STATUS LIKE 'PROGRESS'
@@ -405,12 +406,20 @@ require 'session.php';
                   $reason = $row ['REASON_NAME'];
                   $descp = $row ['REPORT_DESCP'];
                   $date = $row ['REPORT_DATE'];
-                 // $date = date("j M y",strtotime($date));
-                 $status = $row ['STATUS'];
+                  // $date = date("j M y",strtotime($date));
+                  $status = $row ['STATUS'];
+                  $avatar = $row['AVATAR_NAME'];
+                  if($avatar!=null){
+                    $imglink="../img/avatar/".$avatar;                      
+                  }else{
+                    $imglink="../img/author/avatar.jpg";
+                  }
+
+
                   $url='window.location="report-details.php?reportID='.$reportID.'"';
                   echo '<tr class="cursor-pointer" onclick='.$url.'>
                   <td>
-                    <img src="assets/images/faces/face1.jpg" class="mr-2" alt="image"> '.$byUserName.'</td>
+                    <img src="'.$imglink.'" class="mr-2" alt="image"> '.$byUserName.'</td>
                     <td> ['.$reportType.'] '.$reason.' </td>
                   <td>';
                   if(strpos($status, 'OPEN') !== false){
@@ -467,6 +476,7 @@ require 'session.php';
             <?php 
               $retrieveSupportSQL="SELECT * FROM SUPPORT 
                                   INNER JOIN USER ON (SUPPORT.USER_ID=USER.USER_ID)
+                                  LEFT JOIN AVATAR ON (USER.AVATAR_ID=AVATAR.AVATAR_ID)
                                   WHERE STATUS LIKE 'OPEN'
                                   OR STATUS LIKE 'ON HOLD'
                                   OR STATUS LIKE 'PROGRESS'
@@ -481,12 +491,19 @@ require 'session.php';
                   $reason = $row ['SUPPORT_SUBJECT'];
                   $descp = $row ['SUPPORT_DESCP'];
                   $date = $row ['SUPPORT_DATE'];
-                 // $date = date("j M y",strtotime($date));
-                 $status = $row ['STATUS'];
+                  // $date = date("j M y",strtotime($date));
+                  $status = $row ['STATUS'];
+                  $avatar = $row['AVATAR_NAME'];
+                  if($avatar!=null){
+                    $imglink="../img/avatar/".$avatar;                      
+                  }else{
+                    $imglink="../img/author/avatar.jpg";
+                  }
+
                   $url='window.location="support-details.php?supportID='.$supportID.'"';
                   echo '<tr class="cursor-pointer" onclick='.$url.'>
                   <td>
-                    <img src="assets/images/faces/face1.jpg" class="mr-2" alt="image"> '.$byUserName.'</td>
+                    <img src="'.$imglink.'" class="mr-2" alt="image"> '.$byUserName.'</td>
                   <td>'.$reason.' </td>
                   <td>';
                   if(strpos($status, 'OPEN') !== false){
@@ -667,8 +684,8 @@ require 'session.php';
         </div>
         <footer class="footer">
   <div class="container-fluid clearfix">
-    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2020 <a href="http://www.bootstrapdash.com/" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
-    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i>
+    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © USMers' 2020/2021</span>
+    
     </span>
   </div>
 </footer>      </div>

@@ -86,12 +86,36 @@ require 'session.php';
         INNER JOIN USER ON(USER.USER_ID=$adsTable.USER_ID)
         WHERE $adsTable.ADS_ID='$adsID'";
     $r2=mysqli_query($conn,$q2);
-    while($row2 = mysqli_fetch_assoc($r2)){
-      $adsName = $row2['ADS_TITLE'];
-      $sellerID = $row2 ['USER_ID'];
-      $sellerName = $row2 ['USER_NAME'];
-  
-  }
+    //echo 'q2 '.$q2.'<br>';
+
+    //if ads has been deleted
+    $adsTable="DELETED_ADS";
+    $imgTable="DELETED_IMAGE";
+    if (mysqli_num_rows($r2) == 0) {
+      $q4="SELECT * FROM REPORT_ADS 
+        INNER JOIN ".$adsTable." ON (REPORT_ADS.ADS_ID=$adsTable.ADS_ID)
+        INNER JOIN USER ON(USER.USER_ID=$adsTable.USER_ID)
+        WHERE $adsTable.ADS_ID='$adsID'
+        AND REPORT_ADS.REPORT_ID='$reportID'";
+      $r4=mysqli_query($conn,$q4);
+      //echo 'q4 '.$q4.'<br>';
+
+      while($row4 = mysqli_fetch_assoc($r4)){
+        $adsName = $row4['ADS_TITLE'];
+        $sellerID = $row4 ['USER_ID'];
+        $sellerName = $row4 ['USER_NAME'];
+    
+     }
+
+    }else{
+      while($row2 = mysqli_fetch_assoc($r2)){
+        $adsName = $row2['ADS_TITLE'];
+        $sellerID = $row2 ['USER_ID'];
+        $sellerName = $row2 ['USER_NAME'];
+    
+     }
+    }
+
   }
 
 
@@ -302,8 +326,8 @@ include 'sidebar.php';
         </div>
         <footer class="footer">
   <div class="container-fluid clearfix">
-    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2020 <a href="http://www.bootstrapdash.com/" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
-    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i>
+    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © USMers' 2020/2021</span>
+    
     </span>
   </div>
 </footer>      </div>

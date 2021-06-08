@@ -315,7 +315,9 @@ window.onload = showMsg;
               <tbody>
               <?php 
                 // $q1="SELECT * FROM ADMIN INNER JOIN USER ON (USER.USER_EMAIL=ADMIN.USER_EMAIL)";
-                $q1="SELECT * FROM ADMIN ";
+                $q1="SELECT * FROM ADMIN 
+                INNER JOIN USER ON (USER.USER_EMAIL=ADMIN.USER_EMAIL)
+                LEFT JOIN AVATAR ON (USER.AVATAR_ID=AVATAR.AVATAR_ID)";
 
                 $r1 = mysqli_query($conn,$q1);
                 if ( mysqli_num_rows($r1)> 0){
@@ -323,21 +325,27 @@ window.onload = showMsg;
                     $id = $row['ADMIN_ID'];
                     $email = $row['USER_EMAIL'];
                     // $name = $row ['USER_NAME'];
-                    $name = 'test';
+                    $name = $row['USER_NAME'];
                     $date = $row ['ADDED_DATE'];
                    // $date = date("j M y",strtotime($date));
+                   $avatar = $row['AVATAR_NAME'];
+                  if($avatar!=null){
+                    $imglink="../img/avatar/".$avatar;                      
+                  }else{
+                    $imglink="../img/author/avatar.jpg";
+                  }
                   $url='window.location="ads-details.php?adsID='.$id.'"';
 
                     echo '<tr>
                     <td class="">
-                      <img src="assets/images/faces/face1.jpg" class="mr-2" alt="image"> '.$name.'</td>
+                      <img src="'.$imglink.'" class="mr-2" alt="image"> '.$name.'</td>
                     <td>';
                     echo $email;
                       
                     echo '</td>
                     <td> '.$date.' </td>
                     <td> '.$id.' </td>';
-                    if($_SESSION['userEmail']===$email)
+                    if($_SESSION['userEmail']===$email||$_SESSION['userEmail']==="usmers@usm.my")
                       echo '<td onclick="remove(event,\''.$id.'\')" class="link">Remove</td>';
                     else{
                       echo '<td class="unlink">Remove</td>';
@@ -364,8 +372,8 @@ window.onload = showMsg;
 </div>
 <footer class="footer">
 <div class="container-fluid clearfix">
-<span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2020 <a href="http://www.bootstrapdash.com/" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
-<span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i>
+<span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © USMers' 2020/2021</span>
+
 </span>
 </div>
 </footer>      

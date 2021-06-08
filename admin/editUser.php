@@ -14,14 +14,14 @@ if(isset($_POST['userID']))
 
     if(strpos($action, 'revoke') !== false){
         $updateUserSQL="UPDATE USER SET USER_STATUS='R',
-                        ADMIN_UPDATE_DATE=NOW() 
+                        DELETED_DATE=NOW() 
                         WHERE USER_ID='$userID'";
 
         $insertInfoSQL="INSERT INTO USER_MANAGEMENT (USER_ID,ACTION,DESCP,TIME,PIC) 
                         VALUES ('$userID','REVOKE','$reason',NOW(),'$admin')";
     } else if(strpos($action, 'grant') !== false){
         $updateUserSQL="UPDATE USER SET USER_STATUS='A',
-                        ADMIN_UPDATE_DATE=NOW() 
+                        DELETED_DATE=NOW() 
                         WHERE USER_ID='$userID'";
         $insertInfoSQL="INSERT INTO USER_MANAGEMENT (USER_ID,ACTION,DESCP,TIME,PIC) 
                         VALUES ('$userID','GRANT','$reason',NOW(),'$admin')";

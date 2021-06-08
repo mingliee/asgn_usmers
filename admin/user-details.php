@@ -159,9 +159,10 @@ $userID=$_GET['userID'];
 $admin = $_SESSION["userID"];
 
 $retrieveUserProfileSQL="SELECT * FROM USER 
-                          INNER JOIN LOCATION ON (LOCATION.LOC_VALUE=USER.ADDRESS) 
-                          INNER JOIN SCHOOL ON (SCHOOL.SCHOOL_VALUE=USER.SCHOOL) 
-                          WHERE USER.USER_ID ='$userID'";
+                        INNER JOIN LOCATION ON (LOCATION.LOC_VALUE=USER.ADDRESS) 
+                        INNER JOIN SCHOOL ON (SCHOOL.SCHOOL_VALUE=USER.SCHOOL) 
+                        LEFT JOIN AVATAR ON (USER.AVATAR_ID=AVATAR.AVATAR_ID)
+                        WHERE USER.USER_ID ='$userID'";
 $retrieveUserProfileResult = mysqli_query($conn,$retrieveUserProfileSQL);
 
 while($row = mysqli_fetch_assoc($retrieveUserProfileResult)){
@@ -175,6 +176,12 @@ while($row = mysqli_fetch_assoc($retrieveUserProfileResult)){
       $loc = $row['AREA'];
   }
   $school=$row['SCHOOL_NAME'];
+  $avatar = $row['AVATAR_NAME'];
+  if($avatar!=null){
+    $imglink="../img/avatar/".$avatar;                      
+  }else{
+    $imglink="../img/author/avatar.jpg";
+  }
 
   $join = date("j M y g:i a",strtotime($row['CREATE_AT']));
 
@@ -189,7 +196,7 @@ while($row = mysqli_fetch_assoc($retrieveUserProfileResult)){
           <div class="card">
             <div class="card-body">
             <div class="border-bottom text-center pb-4">
-              <img src="assets/images/faces/face1.jpg" alt="profile" class="img-lg rounded-circle mb-3" />
+              <img src="<?php echo $imglink; ?>" alt="profile" class="img-lg rounded-circle mb-3" />
               <p><?php echo $username; ?></p>
             </div>
             <div class="py-4">
@@ -223,12 +230,39 @@ while($row = mysqli_fetch_assoc($retrieveUserProfileResult)){
                 <button class="btn btn-gradient-success actionBtn" id="actionBtn" onclick="showSwal('grant','<?php echo $userID; ?>','<?php echo $admin; ?>')">Grant Access</button>
                 <?php } ?>
             </div>
+            <hr>
+            <span><strong>ADMIN ONLY:</strong></span><br>
+            <div class="d-flex justify-content-between">
+            <?php 
+            $q2 ="SELECT * FROM `USER_MANAGEMENT` INNER JOIN USER ON (USER.USER_ID=USER_MANAGEMENT.PIC) where USER_MANAGEMENT.USER_ID = '$userID' ORDER BY `TIME` DESC LIMIT 1";
+            $r2=mysqli_query($conn,$q2);
+            //echo 'q2: '.$q2;
+
+            if ( mysqli_num_rows($r2)){
+              while($row = mysqli_fetch_assoc($r2)){
+                $action=$row['ACTION'];
+                $adminDescp = $row['DESCP'];
+                $time=$row['TIME'];
+                $pic = $row['USER_NAME'];
+
+                echo '<div><strong><u>Latest Update Info</u></strong><br>';
+                echo 'Action Done: '.$action.'<br>';
+                echo 'Description: '.$adminDescp.'<br>';
+                echo 'Date: '.$time.'<br>';
+                echo 'PIC: '.$pic.'<br></div>';
+
+              }
+            }else
+            echo '-';
+            
+            ?>
+            </div>
             </div>
           </div>
           </div>
 <?php 
 
-$retrieveAdsCountSQL="SELECT ((SELECT COUNT(ADS_ITEM.ADS_ID) FROM ADS_ITEM WHERE USER_ID='$userID')+(SELECT COUNT(ADS_JOB.ADS_ID)  FROM ADS_JOB WHERE USER_ID='$userID')+(SELECT COUNT(ADS_ACCOM.ADS_ID)  FROM ADS_ACCOM WHERE USER_ID='$userID')) AS NUM, 'ALL ADS' AS CATEGORY
+$retrieveAdsCountSQL="SELECT ((SELECT COUNT(ADS_ITEM.ADS_ID) FROM ADS_ITEM WHERE USER_ID='$userID')+(SELECT COUNT(ADS_JOB.ADS_ID)  FROM ADS_JOB WHERE USER_ID='$userID')+(SELECT COUNT(ADS_ACCOM.ADS_ID)  FROM ADS_ACCOM WHERE USER_ID='$userID')+(SELECT COUNT(DELETED_ADS.ADS_ID)  FROM DELETED_ADS WHERE USER_ID='$userID')) AS NUM, 'ALL ADS' AS CATEGORY
 
 UNION SELECT ((SELECT COUNT(ADS_ITEM.ADS_ID) FROM ADS_ITEM WHERE USER_ID='$userID' AND ads_status='ACTIVE')+(SELECT COUNT(ADS_JOB.ADS_ID)  FROM ADS_JOB WHERE USER_ID='$userID' AND ads_status='ACTIVE')+(SELECT COUNT(ADS_ACCOM.ADS_ID)  FROM ADS_ACCOM WHERE USER_ID='$userID' AND ads_status='ACTIVE')) AS NUM, 'ACTIVE ADS' AS CATEGORY
 
@@ -236,7 +270,7 @@ UNION SELECT ((SELECT COUNT(ADS_ITEM.ADS_ID) FROM ADS_ITEM WHERE USER_ID='$userI
 
 UNION SELECT ((SELECT COUNT(ADS_ITEM.ADS_ID) FROM ADS_ITEM WHERE USER_ID='$userID' AND ads_status='SOLD')+(SELECT COUNT(ADS_JOB.ADS_ID)  FROM ADS_JOB WHERE USER_ID='$userID' AND ads_status='SOLD')+(SELECT COUNT(ADS_ACCOM.ADS_ID)  FROM ADS_ACCOM WHERE USER_ID='$userID' AND ads_status='SOLD')) AS NUM, 'SOLD ADS' AS CATEGORY
 
-UNION SELECT ((SELECT COUNT(ADS_ITEM.ADS_ID) FROM ADS_ITEM WHERE USER_ID='$userID' AND ads_status='DELETED')+(SELECT COUNT(ADS_JOB.ADS_ID)  FROM ADS_JOB WHERE USER_ID='$userID' AND ads_status='DELETED')+(SELECT COUNT(ADS_ACCOM.ADS_ID)  FROM ADS_ACCOM WHERE USER_ID='$userID' AND ads_status='DELETED')) AS NUM, 'DELETED ADS' AS CATEGORY
+UNION SELECT ((SELECT COUNT(DELETED_ADS.ADS_ID)  FROM DELETED_ADS WHERE USER_ID='$userID')) AS NUM, 'DELETED ADS' AS CATEGORY
 
 UNION SELECT ((SELECT COUNT(ADS_ITEM.ADS_ID) FROM ADS_ITEM WHERE USER_ID='$userID' AND ads_status='INACTIVE')+(SELECT COUNT(ADS_JOB.ADS_ID)  FROM ADS_JOB WHERE USER_ID='$userID' AND ads_status='INACTIVE')+(SELECT COUNT(ADS_ACCOM.ADS_ID)  FROM ADS_ACCOM WHERE USER_ID='$userID' AND ads_status='INACTIVE')) AS NUM, 'INACTIVE ADS' AS CATEGORY";
 $retrieveAdsCountResult = mysqli_query($conn,$retrieveAdsCountSQL);
@@ -301,7 +335,7 @@ if ( mysqli_num_rows($retrieveAdsCountResult)> 0){
                 $q1="SELECT DISTINCT  I.ADS_ID,I.ADS_STATUS,I.ADS_LATEST_UPDATE_DATE,I.ADS_PUBLISH_DATE,I.ADS_TITLE,I.ADS_PRICE,   
                 I.ADS_DESCP,I.ADS_LOC,I.ADS_AREA,I.ADS_CAT,U.USER_NAME
                 FROM ADS_ITEM I    
-                INNER JOIN IMAGE_ITEM II ON (I.ADS_ID=II.ADS_ID) 
+                LEFT JOIN IMAGE_ITEM II ON (I.ADS_ID=II.ADS_ID) 
                 INNER JOIN USER U ON(U.USER_ID=I.USER_ID)    
                 WHERE U.USER_ID ='$userID' 
                 GROUP BY (I.ADS_ID)   
@@ -309,19 +343,27 @@ if ( mysqli_num_rows($retrieveAdsCountResult)> 0){
                 A.ADS_ID,A.ADS_STATUS,A.ADS_LATEST_UPDATE_DATE ,A.ADS_PUBLISH_DATE,A.ADS_TITLE,A.ADS_PRICE,A.ADS_DESCP,A.ADS_LOC,   
                 A.ADS_AREA,A.ADS_CAT,U.USER_NAME
                 FROM ADS_ACCOM A    
-                INNER JOIN IMAGE_ACCOM IA ON (A.ADS_ID=IA.ADS_ID) 
+                LEFT JOIN IMAGE_ACCOM IA ON (A.ADS_ID=IA.ADS_ID) 
                 INNER JOIN USER U ON(U.USER_ID=A.USER_ID)    
                 WHERE U.USER_ID ='$userID' 
                 GROUP BY (A.ADS_ID)   
                 UNION SELECT DISTINCT J.ADS_ID,J.ADS_STATUS,J.ADS_LATEST_UPDATE_DATE ,J.ADS_PUBLISH_DATE,J.ADS_TITLE,J.ADS_PRICE,   
                 J.ADS_DESCP,J.ADS_LOC,J.ADS_AREA,J.ADS_CAT,U.USER_NAME 
                 FROM ADS_JOB J    
-                INNER JOIN IMAGE_JOB IJ ON (J.ADS_ID=IJ.ADS_ID) 
+                LEFT JOIN IMAGE_JOB IJ ON (J.ADS_ID=IJ.ADS_ID) 
                 INNER JOIN USER U ON(U.USER_ID=J.USER_ID)    
                 WHERE U.USER_ID ='$userID' 
                 GROUP BY (J.ADS_ID)   
+                UNION SELECT DISTINCT D.ADS_ID,D.ADS_STATUS,D.ADS_LATEST_UPDATE_DATE ,D.ADS_PUBLISH_DATE,D.ADS_TITLE,D.ADS_PRICE,   
+                D.ADS_DESCP,D.ADS_LOC,D.ADS_AREA,D.ADS_CAT,U.USER_NAME 
+                FROM DELETED_ADS D    
+                LEFT JOIN DELETED_IMAGE DI ON (D.ADS_ID=DI.ADS_ID) 
+                INNER JOIN USER U ON(U.USER_ID=D.USER_ID)    
+                WHERE U.USER_ID ='$userID' 
+                GROUP BY (D.ADS_ID)   
                 ORDER BY ADS_LATEST_UPDATE_DATE DESC";
                 $r1 = mysqli_query($conn,$q1);
+                //echo 'q1: '.$q1;
                 if ( mysqli_num_rows($r1)> 0){
                   while($row = mysqli_fetch_assoc($r1)){
                     $title = $row['ADS_TITLE'];
@@ -333,8 +375,7 @@ if ( mysqli_num_rows($retrieveAdsCountResult)> 0){
                   $url='window.location="ads-details.php?adsID='.$adsID.'"';
 
                     echo '<tr class="cursor-pointer" onclick='.$url.'>
-                    <td class="adsName">
-                      <img src="assets/images/faces/face1.jpg" class="mr-2" alt="image"> '.$title.'</td>
+                    <td class="adsName">'.$title.'</td>
                     <td>';
                     if(strpos($status, 'INACTIVE') !== false){
                       echo '<label class="badge badge-secondary">INACTIVE</label>';
@@ -407,8 +448,7 @@ if ( mysqli_num_rows($retrieveAdsCountResult)> 0){
                   $url='window.location="ads-details.php?adsID='.$adsID.'"';
 
                     echo '<tr class="cursor-pointer" onclick='.$url.'>
-                    <td class="adsName">
-                      <img src="assets/images/faces/face1.jpg" class="mr-2" alt="image"> '.$title.'</td>
+                    <td class="adsName">'.$title.'</td>
                     <td>';
                     if(strpos($status, 'ACTIVE') !== false){
                       echo '<label class="badge badge-success">ACTIVE</label>';
@@ -482,8 +522,7 @@ if ( mysqli_num_rows($retrieveAdsCountResult)> 0){
                   $url='window.location="ads-details.php?adsID='.$adsID.'"';
 
                     echo '<tr class="cursor-pointer" onclick='.$url.'>
-                    <td class="adsName">
-                      <img src="assets/images/faces/face1.jpg" class="mr-2" alt="image"> '.$title.'</td>
+                    <td class="adsName">'.$title.'</td>
                     <td>';
                     if(strpos($status, 'ACTIVE') !== false){
                       echo '<label class="badge badge-success">ACTIVE</label>';
@@ -601,27 +640,14 @@ if ( mysqli_num_rows($retrieveAdsCountResult)> 0){
               </thead>
               <tbody>
               <?php 
-                $q1="SELECT DISTINCT  I.ADS_ID,I.ADS_STATUS,I.ADS_LATEST_UPDATE_DATE,I.ADS_PUBLISH_DATE,I.ADS_TITLE,I.ADS_PRICE,   
-                I.ADS_DESCP,I.ADS_LOC,I.ADS_AREA,I.ADS_CAT,U.USER_NAME
-                FROM ADS_ITEM I    
-                INNER JOIN USER U ON(U.USER_ID=I.USER_ID)    
-                WHERE U.USER_ID ='$userID'  AND I.ADS_STATUS='DELETED'
-                GROUP BY (I.ADS_ID)   
-                UNION SELECT DISTINCT    
-                A.ADS_ID,A.ADS_STATUS,A.ADS_LATEST_UPDATE_DATE ,A.ADS_PUBLISH_DATE,A.ADS_TITLE,A.ADS_PRICE,A.ADS_DESCP,A.ADS_LOC,   
-                A.ADS_AREA,A.ADS_CAT,U.USER_NAME
-                FROM ADS_ACCOM A    
-                INNER JOIN USER U ON(U.USER_ID=A.USER_ID)    
-                WHERE U.USER_ID ='$userID'  AND A.ADS_STATUS='DELETED'
-                GROUP BY (A.ADS_ID)   
-                UNION SELECT DISTINCT J.ADS_ID,J.ADS_STATUS,J.ADS_LATEST_UPDATE_DATE ,J.ADS_PUBLISH_DATE,J.ADS_TITLE,J.ADS_PRICE,   
-                J.ADS_DESCP,J.ADS_LOC,J.ADS_AREA,J.ADS_CAT,U.USER_NAME 
-                FROM ADS_JOB J    
-                INNER JOIN USER U ON(U.USER_ID=J.USER_ID)    
-                WHERE U.USER_ID ='$userID'  AND J.ADS_STATUS='DELETED'
-                GROUP BY (J.ADS_ID)   
+                $q1="SELECT *
+                FROM DELETED_ADS    
+                INNER JOIN USER U ON(U.USER_ID=DELETED_ADS.USER_ID)    
+                WHERE U.USER_ID ='$userID'
+                GROUP BY (DELETED_ADS.ADS_ID)   
                 ORDER BY ADS_LATEST_UPDATE_DATE DESC";
                 $r1 = mysqli_query($conn,$q1);
+
                 if ( mysqli_num_rows($r1)> 0){
                   while($row = mysqli_fetch_assoc($r1)){
                     $title = $row['ADS_TITLE'];
@@ -633,8 +659,7 @@ if ( mysqli_num_rows($retrieveAdsCountResult)> 0){
                   $url='window.location="ads-details.php?adsID='.$adsID.'"';
 
                     echo '<tr class="cursor-pointer" onclick='.$url.'>
-                    <td class="adsName">
-                      <img src="assets/images/faces/face1.jpg" class="mr-2" alt="image"> '.$title.'</td>
+                    <td class="adsName">'.$title.'</td>
                     <td>';
                     if(strpos($status, 'ACTIVE') !== false){
                       echo '<label class="badge badge-success">ACTIVE</label>';
@@ -708,8 +733,7 @@ if ( mysqli_num_rows($retrieveAdsCountResult)> 0){
                   $url='window.location="ads-details.php?adsID='.$adsID.'"';
 
                     echo '<tr class="cursor-pointer" onclick='.$url.'>
-                    <td class="adsName">
-                      <img src="assets/images/faces/face1.jpg" class="mr-2" alt="image"> '.$title.'</td>
+                    <td class="adsName">'.$title.'</td>
                     <td>';
                     if(strpos($status, 'INACTIVE') !== false){
                       echo '<label class="badge badge-secondary">INACTIVE</label>';
@@ -742,8 +766,8 @@ if ( mysqli_num_rows($retrieveAdsCountResult)> 0){
 </div>
 <footer class="footer">
 <div class="container-fluid clearfix">
-<span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2020 <a href="http://www.bootstrapdash.com/" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
-<span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i>
+<span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © USMers' 2020/2021</span>
+
 </span>
 </div>
 </footer>      

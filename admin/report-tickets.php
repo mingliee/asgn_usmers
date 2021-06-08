@@ -225,6 +225,7 @@ if ( mysqli_num_rows($retrieveReportTicketResult)> 0){
               $retrieveReportSQL="SELECT * FROM REPORT 
                                   INNER JOIN USER ON (REPORT.REPORTED_BY_USER_ID=USER.USER_ID )
                                   INNER JOIN REPORT_REASON ON (REPORT.REASON=REPORT_REASON.REASON_VALUE)
+                                  LEFT JOIN AVATAR ON (USER.AVATAR_ID=AVATAR.AVATAR_ID)
                                   ORDER BY (REPORT_DATE) DESC";
               $retrieveReportResult = mysqli_query($conn,$retrieveReportSQL);
               if ( mysqli_num_rows($retrieveReportResult)> 0){
@@ -239,11 +240,17 @@ if ( mysqli_num_rows($retrieveReportTicketResult)> 0){
                   $date = $row ['REPORT_DATE'];
                  // $date = date("j M y",strtotime($date));
                  $status = $row ['STATUS'];
+                 $avatar = $row['AVATAR_NAME'];
+                  if($avatar!=null){
+                    $imglink="../img/avatar/".$avatar;                      
+                  }else{
+                    $imglink="../img/author/avatar.jpg";
+                  }
                  $url='window.location="report-details.php?reportID='.$reportID.'"';
 
                   echo '<tr class="cursor-pointer" onclick='.$url.'>
                   <td>
-                    <img src="assets/images/faces/face1.jpg" class="mr-2" alt="image"> '.$byUserName.'</td>
+                    <img src="'.$imglink.'" class="mr-2" alt="image"> '.$byUserName.'</td>
                     <td>['.$reportType.'] '.$reason.' </td>
                   <td>';
                   if(strpos($status, 'OPEN') !== false){
@@ -289,6 +296,7 @@ if ( mysqli_num_rows($retrieveReportTicketResult)> 0){
               $retrieveReportSQL="SELECT * FROM REPORT 
                                   INNER JOIN USER ON (REPORT.REPORTED_BY_USER_ID=USER.USER_ID )
                                   INNER JOIN REPORT_REASON ON (REPORT.REASON=REPORT_REASON.REASON_VALUE)
+                                  LEFT JOIN AVATAR ON (USER.AVATAR_ID=AVATAR.AVATAR_ID)
                                   WHERE REPORT.STATUS LIKE 'OPEN'
                                   ORDER BY (REPORT_DATE) DESC";
               $retrieveReportResult = mysqli_query($conn,$retrieveReportSQL);
@@ -304,11 +312,17 @@ if ( mysqli_num_rows($retrieveReportTicketResult)> 0){
                   $date = $row ['REPORT_DATE'];
                  // $date = date("j M y",strtotime($date));
                  $status = $row ['STATUS'];
+                 $avatar = $row['AVATAR_NAME'];
+                  if($avatar!=null){
+                    $imglink="../img/avatar/".$avatar;                      
+                  }else{
+                    $imglink="../img/author/avatar.jpg";
+                  }
                   $url='window.location="report-details.php?reportID='.$reportID.'"';
 
                   echo '<tr class="cursor-pointer" onclick='.$url.'>
                   <td>
-                    <img src="assets/images/faces/face1.jpg" class="mr-2" alt="image"> '.$byUserName.'</td>
+                    <img src="'.$imglink.'" class="mr-2" alt="image"> '.$byUserName.'</td>
                   <td>['.$reportType.'] '.$reason.' </td>
                   <td>';
                   if(strpos($status, 'OPEN') !== false){
@@ -347,6 +361,7 @@ if ( mysqli_num_rows($retrieveReportTicketResult)> 0){
               $retrieveReportSQL="SELECT * FROM REPORT 
                                   INNER JOIN USER ON (REPORT.REPORTED_BY_USER_ID=USER.USER_ID )
                                   INNER JOIN REPORT_REASON ON (REPORT.REASON=REPORT_REASON.REASON_VALUE)
+                                  LEFT JOIN AVATAR ON (USER.AVATAR_ID=AVATAR.AVATAR_ID)
                                   WHERE REPORT.STATUS LIKE 'PROGRESS'
                                   ORDER BY (REPORT_DATE) DESC";
               $retrieveReportResult = mysqli_query($conn,$retrieveReportSQL);
@@ -362,10 +377,16 @@ if ( mysqli_num_rows($retrieveReportTicketResult)> 0){
                   $date = $row ['REPORT_DATE'];
                  // $date = date("j M y",strtotime($date));
                  $status = $row ['STATUS'];
+                 $avatar = $row['AVATAR_NAME'];
+                  if($avatar!=null){
+                    $imglink="../img/avatar/".$avatar;                      
+                  }else{
+                    $imglink="../img/author/avatar.jpg";
+                  }
                  $url='window.location="report-details.php?reportID='.$reportID.'"';
                   echo '<tr class="cursor-pointer" onclick='.$url.'>
                   <td>
-                    <img src="assets/images/faces/face1.jpg" class="mr-2" alt="image"> '.$byUserName.'</td>
+                    <img src="'.$imglink.'" class="mr-2" alt="image"> '.$byUserName.'</td>
                   <td>['.$reportType.'] '.$reason.' </td>
                   <td>';
                   if(strpos($status, 'PROGRESS') !== false){
@@ -403,6 +424,7 @@ if ( mysqli_num_rows($retrieveReportTicketResult)> 0){
               $retrieveReportSQL="SELECT * FROM REPORT 
                                   INNER JOIN USER ON (REPORT.REPORTED_BY_USER_ID=USER.USER_ID )
                                   INNER JOIN REPORT_REASON ON (REPORT.REASON=REPORT_REASON.REASON_VALUE)
+                                  LEFT JOIN AVATAR ON (USER.AVATAR_ID=AVATAR.AVATAR_ID)
                                   WHERE REPORT.STATUS LIKE 'ON HOLD'
                                   ORDER BY (REPORT_DATE) DESC";
               $retrieveReportResult = mysqli_query($conn,$retrieveReportSQL);
@@ -418,10 +440,16 @@ if ( mysqli_num_rows($retrieveReportTicketResult)> 0){
                   $date = $row ['REPORT_DATE'];
                  // $date = date("j M y",strtotime($date));
                  $status = $row ['STATUS'];
+                 $avatar = $row['AVATAR_NAME'];
+                  if($avatar!=null){
+                    $imglink="../img/avatar/".$avatar;                      
+                  }else{
+                    $imglink="../img/author/avatar.jpg";
+                  }
                  $url='window.location="report-details.php?reportID='.$reportID.'"';
                   echo '<tr class="cursor-pointer" onclick='.$url.'>
                   <td>
-                    <img src="assets/images/faces/face1.jpg" class="mr-2" alt="image"> '.$byUserName.'</td>
+                    <img src="'.$imglink.'" class="mr-2" alt="image"> '.$byUserName.'</td>
                   <td>['.$reportType.'] '.$reason.' </td>
                   <td>';
                   if(strpos($status, 'ON HOLD') !== false){
@@ -459,6 +487,7 @@ if ( mysqli_num_rows($retrieveReportTicketResult)> 0){
               $retrieveReportSQL="SELECT * FROM REPORT 
                                   INNER JOIN USER ON (REPORT.REPORTED_BY_USER_ID=USER.USER_ID )
                                   INNER JOIN REPORT_REASON ON (REPORT.REASON=REPORT_REASON.REASON_VALUE)
+                                  LEFT JOIN AVATAR ON (USER.AVATAR_ID=AVATAR.AVATAR_ID)
                                   WHERE REPORT.STATUS LIKE 'REJECTED'
                                   ORDER BY (REPORT_DATE) DESC";
               $retrieveReportResult = mysqli_query($conn,$retrieveReportSQL);
@@ -474,10 +503,16 @@ if ( mysqli_num_rows($retrieveReportTicketResult)> 0){
                   $date = $row ['REPORT_DATE'];
                  // $date = date("j M y",strtotime($date));
                  $status = $row ['STATUS'];
+                 $avatar = $row['AVATAR_NAME'];
+                  if($avatar!=null){
+                    $imglink="../img/avatar/".$avatar;                      
+                  }else{
+                    $imglink="../img/author/avatar.jpg";
+                  }
                  $url='window.location="report-details.php?reportID='.$reportID.'"';
                   echo '<tr class="cursor-pointer" onclick='.$url.'>
                   <td>
-                    <img src="assets/images/faces/face1.jpg" class="mr-2" alt="image"> '.$byUserName.'</td>
+                    <img src="'.$imglink.'" class="mr-2" alt="image"> '.$byUserName.'</td>
                   <td>['.$reportType.'] '.$reason.' </td>
                   <td>';
                   if(strpos($status, 'REJECTED') !== false){
@@ -515,6 +550,7 @@ if ( mysqli_num_rows($retrieveReportTicketResult)> 0){
               $retrieveReportSQL="SELECT * FROM REPORT 
                                   INNER JOIN USER ON (REPORT.REPORTED_BY_USER_ID=USER.USER_ID )
                                   INNER JOIN REPORT_REASON ON (REPORT.REASON=REPORT_REASON.REASON_VALUE)
+                                  LEFT JOIN AVATAR ON (USER.AVATAR_ID=AVATAR.AVATAR_ID)
                                   WHERE REPORT.STATUS LIKE 'CLOSED'
                                   ORDER BY (REPORT_DATE) DESC";
               $retrieveReportResult = mysqli_query($conn,$retrieveReportSQL);
@@ -530,10 +566,16 @@ if ( mysqli_num_rows($retrieveReportTicketResult)> 0){
                   $date = $row ['REPORT_DATE'];
                  // $date = date("j M y",strtotime($date));
                  $status = $row ['STATUS'];
+                 $avatar = $row['AVATAR_NAME'];
+                  if($avatar!=null){
+                    $imglink="../img/avatar/".$avatar;                      
+                  }else{
+                    $imglink="../img/author/avatar.jpg";
+                  }
                  $url='window.location="report-details.php?reportID='.$reportID.'"';
                   echo '<tr class="cursor-pointer" onclick='.$url.'>
                   <td>
-                    <img src="assets/images/faces/face1.jpg" class="mr-2" alt="image"> '.$byUserName.'</td>
+                    <img src="'.$imglink.'" class="mr-2" alt="image"> '.$byUserName.'</td>
                   <td>['.$reportType.'] '.$reason.' </td>
                   <td>';
                   if(strpos($status, 'CLOSED') !== false){
@@ -588,8 +630,8 @@ if ( mysqli_num_rows($retrieveReportTicketResult)> 0){
         </div>
         <footer class="footer">
   <div class="container-fluid clearfix">
-    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2020 <a href="http://www.bootstrapdash.com/" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
-    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i>
+    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © USMers' 2020/2021</span>
+    
     </span>
   </div>
 </footer>      </div>
