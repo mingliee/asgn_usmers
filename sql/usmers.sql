@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2021 at 08:38 AM
+-- Generation Time: Jun 08, 2021 at 04:20 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -42,9 +42,9 @@ INSERT INTO `abbr` (`ABBR_ID`, `ABBR_VALUE`, `ABBR_NAME`) VALUES
 (1, 'meetup', 'Meet Up'),
 (2, 'mail', 'Mailing or Delivery'),
 (3, 'meetup mail', 'Meet Up, Mailing or Delivery'),
-(4, 'male', 'Male'),
-(5, 'female', 'Female'),
-(6, 'male female', 'Male,Female'),
+(4, 'm', 'Male'),
+(5, 'f', 'Female'),
+(6, 'm f', 'Male,Female'),
 (7, 'parttime', 'Part-time'),
 (8, 'freelance', 'Freelance'),
 (9, 'internship', 'Internship'),
@@ -74,7 +74,7 @@ INSERT INTO `admin` (`ADMIN_ID`, `USER_EMAIL`, `ADDED_DATE`) VALUES
 ('A00001', 'henry@usm.my', '2021-05-01 15:42:32'),
 ('A00002', 'anna@usm.my', '2021-05-02 13:57:51'),
 ('A00003', 'minglilee@student.usm.my', '2021-05-02 14:03:37'),
-('A00004', 'Wohoo@usm.my', '2021-05-02 14:17:56');
+('A00004', 'usmers@usm.my', '2021-05-02 14:17:56');
 
 -- --------------------------------------------------------
 
@@ -104,18 +104,12 @@ CREATE TABLE `ads_accom` (
 --
 
 INSERT INTO `ads_accom` (`ADS_ID`, `ADS_STATUS`, `ADS_TITLE`, `ADS_CAT`, `ADS_PRICE`, `ADS_DESCP`, `ADS_LOC`, `ADS_AREA`, `ADS_PUBLISH_DATE`, `ADS_LATEST_UPDATE_DATE`, `USER_ID`, `ACCM_TENET_PREF`, `PRIVATE_STATUS`, `ADMIN_UPDATE_DATE`) VALUES
-('AA00007', 'DELETED', 'room for rent', 'accommodation room', '220.00', 'new', 'Desa Airmas', '', '2021-04-19 10:22:20', '2021-03-30 11:43:28', 33, 'male female', 'ACTIVE', NULL),
-('AA00008', 'SOLD', 'Queensbay area', 'accommodation room', '44.00', 'Queensbay Area', 'Penang', '', '2021-04-19 10:22:20', '2021-04-01 11:38:59', 33, 'male female', 'ACTIVE', NULL),
-('AA00009', 'ACTIVE', 'Taman Pekaka Room for Rent', 'accommodation room', '500.00', 'Taman Pekaka Room For Rent<br />\r\n<br />\r\n&quot;nice place&quot;', 'Taman Pekaka', '', '2021-04-19 10:22:20', '2021-04-01 11:17:17', 37, 'male female', 'ACTIVE', NULL),
-('AA00010', 'ACTIVE', 'U-Height House to Rent', 'accommodation house', '7800.00', 'U-Height House To Rent.<br />\r\nNear to USM', 'University Heights', '', '2021-04-19 10:22:20', '2021-04-01 11:26:03', 34, 'male female', 'ACTIVE', NULL),
-('AA00011', 'DELETED', 'Universiti Heights Apartment, Room for rent', 'accommodation room', '550.00', 'Universiti Heights Apartment, Sungai Dua, Gelugor<br />\r\n-Master bedroom (2-3 persons) RM550 per room<br />\r\n-Middle room (2 persons -left one slot) RM360 per room<br />\r\n-Single room RM200<br />\r\n*Utilities fees excluded<br />\r\n-no contract<br />\r\n-available at 1st April<br />\r\n-Fully furnished (washing machine, heater, refrigerator etc)<br />\r\n-cooking allowed<br />\r\n-WIFI provided<br />\r\n-swimming pool (currently closed)<br />\r\n-walking distance to usm, bus stop<br />\r\n-5 mins to tesco extra, food court, KFC, McD etc<br />\r\n-prefer Chinese<br />\r\nKindly PM me if interested', 'University Heights', '', '2021-04-19 10:22:20', '2021-04-03 10:59:35', 35, 'male female', 'ACTIVE', NULL),
-('AA00012', 'ACTIVE', 'Desa Airmas, Shared Middle Room For rent', 'accommodation room', '275.00', 'Desa Airmas<br />\r\nShared Middle Room for rent from now until September 2021 (one place left)<br />\r\n*GIRL ONLY*<br />\r\n- RM275/month<br />\r\n- Rental fees includes utilities and Wi-Fi<br />\r\n- Fully furnished: refrigerator, washing machine, water heater, study table and chair, bed, wardrobe, etc.<br />\r\n-Facilities: swimming pool, 24 hours security, playground, etc.<br />\r\n-Cooking is allowed.<br />\r\n-Have regular cleaning services.<br />\r\nPlease message me directly if interested. Thank you.', 'Desa Airmas', '', '2021-04-19 10:22:20', '2021-04-03 11:00:26', 35, 'female ', 'ACTIVE', NULL),
-('AA00013', 'DELETED', 'U Height 97 whole unit for rent', 'accommodation house', '5454.00', 'U Height 97 whole unit for rent ðŸ¢<br />\r\n- 3 Bedroom and 2 bathroom<br />\r\n- Fully FurnishedðŸ›‹ï¸ (Refrigeratorâœ”ï¸, Washing Machineâœ”ï¸)<br />\r\n- Cooking allowedðŸ²ðŸ³<br />\r\n- 1 Car ParkðŸš—<br />\r\n- 1 Motorcycle Park ðŸï¸<br />\r\n- Walking distance to USM, Tesco, Hawker centerðŸš¶ðŸš¶&zwj;â™‚ï¸<br />\r\n- Prefer ChineseðŸ‘­ðŸ»ðŸ‘«ðŸ»<br />\r\n- Direct to ownerðŸ˜²<br />\r\nPm me if you&quot;re interestedðŸ˜‰', 'University Heights', '', '2021-04-19 10:03:14', '2021-04-03 11:01:07', 35, 'male female', 'ACTIVE', '2021-04-19 10:03:14'),
-('AA00014', 'ACTIVE', 'Gambier Heights Middle room for rent', 'accommodation room', '400.00', 'Gambier Heights Middle room for rent<br />\r\n- monthly rental RM400<br />\r\n- contract end at 31 Aug 2021<br />\r\n- queen sized bed<br />\r\n- rental excluding water, electric bills, Wifi<br />\r\n- including 1 parking spot<br />\r\n- fully furnished<br />\r\n- aircond, ceiling fan, refrigerator, stove, water heater, wardrobe, washing machine available<br />\r\n- walking distance from USM, 10 mins drive from tesco,15mins drive from queensbay mall<br />\r\n- hawker stall, convenient store and barber at G floor<br />\r\n- swimming pool,gym<br />\r\n- strictly no smoking/vape/e-cigarette<br />\r\n- May move in<br />\r\n- preferable Chinese<br />\r\n- 1 year contract<br />\r\n- PM or whatsapp () for more details and room viewing', 'op', 'Gambier Heights', '2021-04-19 10:22:20', '2021-04-03 11:15:16', 34, 'male female', 'ACTIVE', NULL),
-('AA00015', 'ACTIVE', 'Taman Pekaka fully furnished small room', 'accommodation room', '390.00', 'Taman Pekaka fully furnished small room for rent at 1st April with reasonable rental.<br />\r\n(Short rent period is acceptable).<br />\r\nPrefer female.<br />\r\n<br />\r\nWhat will you enjoy?<br />\r\n-table<br />\r\n-wardrobe<br />\r\n-mattress<br />\r\n-cooker<br />\r\n-fridge<br />\r\n-washing Machine<br />\r\n-tv<br />\r\n-sofa<br />\r\n-wifi etc.<br />\r\n<br />\r\nAll the necessary things will be available except personal care things.<br />\r\npm or whatapp 017 for more info ya', 'Taman Pekaka', '', '2021-04-19 10:22:20', '2021-04-03 11:21:13', 34, 'female ', 'ACTIVE', NULL),
-('AA00016', 'ACTIVE', 'Taman Pekaka 31B Room for Rent', 'accommodation room', '350.00', 'Taman Pekaka 31B Room for Rent<br />\r\nSmall Room (Max 2ppl)<br />\r\n- RM 350 (Rental and wifi only)<br />\r\n- (Utilities and gas tank excluded)<br />\r\n- Queen size bed<br />\r\n- Aircond<br />\r\n- Wardrobe<br />\r\n- Window<br />\r\n- Ceiling fan<br />\r\n- Ready to move in from January 2021<br />\r\nOther<br />\r\n- Light cooking allowed<br />\r\n- Time wifi 100mbps<br />\r\n- Shared bathroom<br />\r\n- Bathroom with water heater<br />\r\n- Stove<br />\r\n- Refrigerator<br />\r\n- Washing machine<br />\r\n- Prefer CLEAN and RESPONSIBLE tenant<br />\r\n- Prefer CHINESE couple or female tenant', 'Taman Pekaka', '', '2021-04-19 10:22:20', '2021-04-03 11:31:13', 34, 'female ', 'ACTIVE', NULL),
-('AA00017', 'ACTIVE', 'PLAZA IVORY room for rent', 'accommodation room', '300.00', 'BILIK UNTUK DISEWA untuk lelaki sahaja<br />\r\n<br />\r\nkawasan: PLAZA IVORY, halaman bukit gambier, gelugor (depan gate USM)<br />\r\n<br />\r\nKelebihan:<br />\r\n1) hanya 3 orang serumah (high privacy)<br />\r\n2) 24jam security<br />\r\n3) akses percuma (gym, kolam renang, parking motor)<br />\r\n4) Fully furnished (katil, tilam, almari, peti sejuk, perkakas memasak, mesin basuh)<br />\r\n5) kedai makan di tingkat bawah<br />\r\n6) berdekatan dengan 7E dan dobi<br />\r\n7) kawasan rumah yang tenang dan sunyi<br />\r\n<br />\r\nHarga: RM300 (termasuk bill air)<br />\r\nDeposit 1 bulan sahaja<br />\r\nTiada caj tambahan (agent dan security)<br />\r\n<br />\r\nWhatsapp', 'Plaza Ivory', '', '2021-04-19 10:22:20', '2021-04-03 11:32:41', 34, 'male ', 'ACTIVE', NULL),
-('AA00018', 'DELETED', '31A Taman Pekaka Room for rent', 'accommodation room', '400.00', '31A Taman Pekaka Room for rent<br />\r\n-fully furnished<br />\r\n-cooking allowed<br />\r\n-no contract<br />\r\n-no agent fees<br />\r\n-friendly housemates<br />\r\n- kindly pm if interested<br />\r\nThank you', 'Taman Pekaka', '', '2021-04-19 10:22:20', '2021-04-03 11:42:03', 33, 'male female', 'ACTIVE', NULL);
+('AA00008', 'SOLD', 'Queensbay area', 'accommodation room', '44.00', 'Queensbay Area', 'Penang', '', '2021-05-22 14:36:21', '2021-04-01 11:38:59', 33, 'm f', 'ACTIVE', NULL),
+('AA00010', 'ACTIVE', 'U-Height House to Rent', 'accommodation house', '7800.00', 'U-Height House To Rent.<br />\r\nNear to USM', 'University Heights', '', '2021-05-22 14:36:18', '2021-04-01 11:26:03', 34, 'm f', 'ACTIVE', NULL),
+('AA00014', 'ACTIVE', 'Gambier Heights Middle room for rent', 'accommodation room', '400.00', 'Gambier Heights Middle room for rent<br />\r\n- monthly rental RM400<br />\r\n- contract end at 31 Aug 2021<br />\r\n- queen sized bed<br />\r\n- rental excluding water, electric bills, Wifi<br />\r\n- including 1 parking spot<br />\r\n- fully furnished<br />\r\n- aircond, ceiling fan, refrigerator, stove, water heater, wardrobe, washing machine available<br />\r\n- walking distance from USM, 10 mins drive from tesco,15mins drive from queensbay mall<br />\r\n- hawker stall, convenient store and barber at G floor<br />\r\n- swimming pool,gym<br />\r\n- strictly no smoking/vape/e-cigarette<br />\r\n- May move in<br />\r\n- preferable Chinese<br />\r\n- 1 year contract<br />\r\n- PM or whatsapp () for more details and room viewing', 'op', 'Gambier Heights', '2021-05-24 09:54:03', '2021-05-22 14:02:05', 34, 'm f', 'ACTIVE', NULL),
+('AA00015', 'ACTIVE', 'Taman Pekaka fully furnished small room', 'accommodation room', '390.00', 'Taman Pekaka fully furnished small room for rent at 1st April with reasonable rental.<br />\r\n(Short rent period is acceptable).<br />\r\nPrefer female.<br />\r\n<br />\r\nWhat will you enjoy?<br />\r\n-table<br />\r\n-wardrobe<br />\r\n-mattress<br />\r\n-cooker<br />\r\n-fridge<br />\r\n-washing Machine<br />\r\n-tv<br />\r\n-sofa<br />\r\n-wifi etc.<br />\r\n<br />\r\nAll the necessary things will be available except personal care things.<br />\r\npm or whatapp 017 for more info ya', 'Taman Pekaka', '', '2021-05-24 09:53:59', '2021-05-22 14:13:30', 34, 'm', 'ACTIVE', NULL),
+('AA00016', 'RESERVED', 'Taman Pekaka 31B Room for Rent', 'accommodation room', '350.00', 'Taman Pekaka 31B Room for Rent<br />\r\nSmall Room (Max 2ppl)<br />\r\n- RM 350 (Rental and wifi only)<br />\r\n- (Utilities and gas tank excluded)<br />\r\n- Queen size bed<br />\r\n- Aircond<br />\r\n- Wardrobe<br />\r\n- Window<br />\r\n- Ceiling fan<br />\r\n- Ready to move in from January 2021<br />\r\nOther<br />\r\n- Light cooking allowed<br />\r\n- Time wifi 100mbps<br />\r\n- Shared bathroom<br />\r\n- Bathroom with water heater<br />\r\n- Stove<br />\r\n- Refrigerator<br />\r\n- Washing machine<br />\r\n- Prefer CLEAN and RESPONSIBLE tenant<br />\r\n- Prefer CHINESE couple or female tenant', 'Taman Pekaka', '', '2021-05-22 14:36:05', '2021-05-22 14:18:26', 34, 'm', 'ACTIVE', NULL),
+('AA00017', 'ACTIVE', 'Middle/Small room at N Park Condominium', 'accommodation room', '320.00', 'Middle/Small room at N Park Condominium<br />\r\nfor rent<br />\r\n- Can move in immediately<br />\r\n- Only at RM320 per month<br />\r\n-Facilities:<br />\r\n24 hours security, swimming pool, basketball court<br />\r\n-Nearby:<br />\r\nfood court, tesco, queenbay, USM<br />\r\n-Any races are welcome<br />\r\n-Working adult/ Student<br />\r\nPM for more details', 'op', 'N Park Condominium', '2021-06-08 13:39:12', '2021-06-08 13:39:12', 34, 'm f ', 'ACTIVE', NULL);
 
 -- --------------------------------------------------------
 
@@ -146,31 +140,22 @@ CREATE TABLE `ads_item` (
 --
 
 INSERT INTO `ads_item` (`ADS_ID`, `ADS_STATUS`, `ADS_TITLE`, `ADS_CAT`, `ADS_PRICE`, `ADS_DESCP`, `ADS_LOC`, `ADS_AREA`, `ADS_PUBLISH_DATE`, `ADS_LATEST_UPDATE_DATE`, `USER_ID`, `ITEM_CONDITION`, `ITEM_DEAL_METHOD`, `PRIVATE_STATUS`, `ADMIN_UPDATE_DATE`) VALUES
-('AI00001', 'DELETED', 'Power cable', 'item home', '10.00', 'used one sem', 'Plaza Ivory', '', '2021-03-30 11:39:31', '2021-03-30 11:39:31', 33, 'used', 'meetup mail', 'ACTIVE', NULL),
 ('AI00098', 'SOLD', 'guitar', 'item sport', '222.00', 'used one sem', 'Plaza Ivory', '', '2021-03-30 11:28:35', '2021-03-30 11:28:35', 33, 'used', 'meetup mail', 'ACTIVE', NULL),
-('AI00099', 'RESERVED', 'Power Cable', 'item home', '44.00', 'Power Cable with 3 socket', 'Desa Universiti', '', '2021-03-30 13:45:54', '2021-03-30 13:45:54', 33, 'used', 'meetup mail', 'ACTIVE', NULL),
-('AI00101', 'DELETED', 'Laptop', 'item computer', '3500.00', 'Acer Laptop<br />\r\nUsed 1 year.', 'Desa Universiti', '', '2021-03-31 16:08:55', '2021-03-31 16:08:55', 33, 'new', 'meetup ', 'ACTIVE', NULL),
 ('AI00103', 'INACTIVE', 'Marketing research Textbook', 'item book', '20.00', 'New', 'Plaza Ivory', '', '2021-04-01 04:03:25', '2021-04-01 04:56:47', 35, 'new', 'meetup mail', 'ACTIVE', NULL),
-('AI00106', 'ACTIVE', 'lifeboay', 'item personal', '0.00', 'New. 300ml<br />\r\nReason to sell: bought extra, moving soon', 'Plaza Ivory', '', '2021-04-01 10:15:25', '2021-04-01 10:15:25', 37, 'new', 'meetup ', 'ACTIVE', NULL),
-('AI00108', 'ACTIVE', 'Financial calculator', 'item book', '60.00', 'Used 1 year.', 'Fajar Harapan', '', '2021-04-01 11:18:22', '2021-04-01 11:18:22', 37, 'used', 'meetup ', 'ACTIVE', NULL),
-('AI00111', 'ACTIVE', 'Hand Sanitizer', 'item health', '7.00', 'Bought extra during MCO.<br />\r\n300 ml :)', 'Cahaya Gemilang', '', '2021-04-01 11:25:08', '2021-04-01 11:25:08', 34, 'new', 'meetup ', 'ACTIVE', NULL),
-('AI00112', 'ACTIVE', 'Table Lamp', 'item home', '15.00', 'Used 1 year.<br />\r\nReason to sell: graduate', 'Desa Airmas', '', '2021-04-01 11:26:50', '2021-04-01 11:26:50', 34, 'used', 'meetup ', 'ACTIVE', NULL),
-('AI00113', 'ACTIVE', 'HadaLabo Hydrating Lotion', 'item health', '8.00', 'Bought extra during sales. Hahahahahahhahahaha niceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee<br />\r\nExp: December 2021', 'Saujana', '', '2021-04-01 11:28:13', '2021-04-02 16:22:08', 34, 'new', 'meetup mail', 'ACTIVE', NULL),
-('AI00115', 'ACTIVE', 'Small Refrigerator', 'item home', '55.00', 'Price can be negotiate<br />\r\nUsed 2 years. Still functional and cool.', 'Plaza Ivory', '', '2021-04-01 11:31:48', '2021-04-01 17:26:26', 33, 'new', 'meetup mail', 'ACTIVE', NULL),
-('AI00118', 'ACTIVE', 'Spanish textbook (LAE100&LAE200)', 'item book', '60.00', 'Spanish textbook (LAE100&amp;LAE200)<br />\r\n<br />\r\nPrice: RM 60 (original price RM120)<br />\r\n<br />\r\nSelf pick up from Desa Airmasï¼ˆæ°´é‡‘é˜ï¼‰<br />\r\nPm if interested', 'Desa Airmas', '', '2021-04-03 11:09:49', '2021-04-03 11:09:49', 35, 'used', 'meetup ', 'ACTIVE', NULL),
-('AI00119', 'ACTIVE', 'Financial Calculator', 'item book', '60.00', 'Condition: 8.5/10<br />\r\nPrice: RM 60<br />\r\nKindly PM if interested.<br />\r\n(Hand over within USM only)', 'Indah Kembara', '', '2021-04-03 11:10:50', '2021-04-03 11:10:50', 35, 'used', 'meetup ', 'ACTIVE', NULL),
-('AI00120', 'ACTIVE', 'Item: Khind Air Cooler', 'item home', '240.00', 'Item: Khind Air Cooler<br />\r\nCondition: 9.5/10<br />\r\nPrice: RM240<br />\r\nWarranty: Yes<br />\r\nReason: Moving<br />\r\n<br />\r\nKindly pm me if interested.', 'Plaza Ivory', '', '2021-04-03 11:11:48', '2021-04-03 11:11:48', 35, 'used', 'meetup ', 'ACTIVE', '2021-04-19 10:18:38'),
-('AI00121', 'ACTIVE', 'Brand new Plus correction tape', 'item book', '4.00', 'Brand new Plus correction tape<br />\r\n', 'Plaza Ivory', '', '2021-04-03 11:12:57', '2021-04-03 11:12:57', 34, 'new', 'meetup ', 'ACTIVE', NULL),
 ('AI00122', 'ACTIVE', 'Test with 5 photo', 'item book', '0.00', 'test with 5 pic', 'Cahaya Gemilang', '', '2021-04-03 11:34:49', '2021-04-05 17:44:23', 34, 'used', 'meetup mail', 'ACTIVE', NULL),
-('AI00123', 'RESERVED', 'Washing Machine', 'item home', '170.00', 'used one year', 'Gambier Heights', '', '2021-04-03 11:51:40', '2021-04-05 13:54:21', 33, 'used', 'meetup ', 'ACTIVE', NULL),
-('AI00124', 'DELETED', 'test', 'item book', '23.00', 'test', 'Desa Universiti', '', '2021-04-03 11:53:08', '2021-04-03 11:53:08', 33, 'used', 'meetup ', 'ACTIVE', NULL),
-('AI00125', 'DELETED', 'test ttfb', 'item book', '1.00', 'rre', 'Restu', '', '2021-04-03 11:57:23', '2021-04-03 11:57:23', 33, 'used', 'meetup ', 'ACTIVE', NULL),
-('AI00126', 'ACTIVE', 'guitar', 'item sport', '45.00', 'guitar', 'Bakti Permai', '', '2021-04-03 14:25:19', '2021-04-03 14:25:19', 33, 'used', 'meetup ', 'ACTIVE', NULL),
+('AI00123', 'ACTIVE', 'Washing Machine', 'item home', '170.00', 'used one year', 'Gambier Heights', '', '2021-04-03 11:51:40', '2021-04-05 13:54:21', 33, 'used', 'meetup ', 'ACTIVE', NULL),
 ('AI00127', 'ACTIVE', 'algo book', 'item mobile', '7.00', 'Still new. Use one sem', 'Saujana', '', '2021-04-05 18:24:01', '2021-04-05 18:24:41', 35, 'used', 'meetup mail', 'ACTIVE', NULL),
-('AI00128', 'ACTIVE', 'My passport Western Digital 1tb', 'item mobile', '180.00', 'My passport Western Digital 1tb<br />\r\nCondition : 10/10 (new, never opened)<br />\r\nWarranty : 3 years (can register the product after opening)<br />\r\nPrice : RM180<br />\r\nPM if interested', 'Gambier Heights', '', '2021-04-06 04:57:49', '2021-04-06 04:57:49', 35, 'new', 'meetup mail', 'ACTIVE', '2021-04-19 09:56:53'),
-('AI00129', 'RESERVED', 'Pensonic Stand Fan', 'item home', '70.00', 'Pensonic Stand Fan for sale.<br />\r\nFan is in great condition &amp; comes with the original box.<br />\r\nPrice: RM 70.<br />\r\nCOD around USM.', 'Bakti Permai', '', '2021-04-06 04:58:53', '2021-05-02 14:39:01', 37, 'used', 'meetup ', 'ACTIVE', NULL),
-('AI00134', 'DELETED', 'Water Cooker', 'item home', '15.00', 'Used one sem. Clean', 'Aman Damai', '', '2021-04-06 05:07:16', '2021-04-25 10:32:15', 37, 'used', 'meetup ', 'ACTIVE', NULL),
-('AI00138', 'DELETED', 'Adidas NMD', 'item personal', '500.00', 'Adidas NMD for sale<br />\r\n- bought RM850 at QB Adidas Original<br />\r\n- Letting go at RM500<br />\r\n- Size 38 (UK5)<br />\r\n- Wear it for less than 5 times<br />\r\n- Condition 8/10<br />\r\n- Not a fan of sneakers, seldom wear it now', 'Sri Saujana', '', '2021-04-06 05:24:34', '2021-04-06 05:24:34', 37, 'used', 'meetup mail', 'ACTIVE', '2021-04-19 15:48:47');
+('AI00128', 'ACTIVE', 'Adidas NMD', 'item personal', '200.00', 'Wear once.<br />\r\nStill new<br />\r\nSize: 44', 'Aman Damai', '', '2021-05-24 09:58:51', '2021-05-24 09:58:51', 33, 'used', 'meetup ', 'ACTIVE', NULL),
+('AI00129', 'ACTIVE', 'How To Write and Speak Better', 'item book', '10.00', 'English Book<br />\r\nLooks like new<br />\r\nless conteng inside<br />\r\nif mailing, postage fee will be RM8 ', 'op', 'Greenlane', '2021-05-24 10:15:35', '2021-05-24 10:15:35', 33, 'used', 'meetup mail', 'ACTIVE', NULL),
+('AI00130', 'ACTIVE', 'luggage bag 24\"', 'item personal', '150.00', 'Used once.<br />\r\nreason to sell: too mane luggage bag', 'Gambier Heights', '', '2021-05-24 10:23:56', '2021-05-24 10:23:56', 33, 'used', 'meetup ', 'ACTIVE', NULL),
+('AI00131', 'ACTIVE', 'Notebooks', 'item book', '16.00', 'Reason to sell: Extra', 'Gambier Heights', '', '2021-06-08 13:27:16', '2021-06-08 13:27:16', 33, 'new', 'meetup mail', 'ACTIVE', NULL),
+('AI00132', 'ACTIVE', 'Stationaries', 'item book', '33.00', 'Reason to sell: Extra', 'Taman Pekaka', '', '2021-06-08 13:30:40', '2021-06-08 13:30:40', 33, 'new', 'meetup mail', 'ACTIVE', NULL),
+('AI00133', 'ACTIVE', 'HP DESKJET INK ADVANTAGE 2520hc', 'item mobile', '60.00', 'Pre-loved Printer for sell<br />\r\nItem: HP DESKJET INK ADVANTAGE 2520hc<br />\r\nCondition: 7/10<br />\r\nPrice: RM 60<br />\r\nReason to sell: Graduating soon<br />\r\n<br />\r\n*** Still have some leftover inks inside, even if you didn&quot;t use for 1 year, the ink doesn&quot;t dry out.<br />\r\n*** Free binding ringsssss, I bought too much last time ðŸ˜…', 'Desa Universiti', '', '2021-06-08 13:31:53', '2021-06-08 13:31:53', 33, 'used', 'meetup ', 'ACTIVE', NULL),
+('AI00134', 'ACTIVE', 'Minna no nihongo Elementary 1-2 ', 'item book', '35.00', 'Conditions: 10/10<br />\r\nReason for selling: already have one<br />\r\nPrice : RM35', 'Indah Kembara', '', '2021-06-08 13:32:58', '2021-06-08 13:32:58', 33, 'new', 'meetup mail', 'ACTIVE', NULL),
+('AI00135', 'ACTIVE', 'cat litter box', 'item sport', '5.00', 'Still can nego<br />\r\n', 'Tekun', '', '2021-06-08 13:34:00', '2021-06-08 13:34:00', 33, 'used', 'meetup ', 'ACTIVE', NULL),
+('AI00136', 'ACTIVE', 'SanDisk Pendrive 8GB', 'item mobile', '15.00', 'SanDisk Pendrive 8GB<br />\r\nCondition: 9.8/10 (use once only for assignment)<br />\r\nPrice: RM8 each (2 for RM15)<br />\r\nReason to sell: No longer use. Graduated soon.<br />\r\nAvailable 8 pcs. (RM50 for all)<br />\r\nCod area Jelutong and USM', 'op', 'Jelutong', '2021-06-08 13:34:51', '2021-06-08 13:34:51', 33, 'used', 'meetup ', 'ACTIVE', NULL),
+('AI00137', 'ACTIVE', 'Laptop desk', 'item home', '15.00', 'Condition: 9.5/10<br />\r\nPrice: RM15<br />\r\nReason to sell: no use already<br />\r\nKindly PM if interested ðŸ˜Š thanks<br />\r\n<br />\r\nGot 2 color, light chocolate and pink', 'Sri Saujana', '', '2021-06-08 13:36:23', '2021-06-08 13:36:23', 34, 'used', 'meetup ', 'ACTIVE', NULL),
+('AI00138', 'ACTIVE', 'Taekwondo Dobok (WTF)', 'item sport', '0.00', 'Condition : 7/10<br />\r\nSize : 3<br />\r\nReason for giving out: Not using anymore<br />\r\n<br />\r\nI&quot;m giving this out for free. Those who need it can pm me. Can arrange for self pick-up if you are at Penang area. Else you may pay courier delivery fees on your own if you need me to send to other states. ðŸ˜Š Thanks!', 'Penang', '', '2021-06-08 13:37:27', '2021-06-08 13:37:27', 34, 'used', 'meetup mail', 'ACTIVE', NULL);
 
 -- --------------------------------------------------------
 
@@ -201,13 +186,11 @@ CREATE TABLE `ads_job` (
 --
 
 INSERT INTO `ads_job` (`ADS_ID`, `ADS_STATUS`, `ADS_TITLE`, `ADS_CAT`, `ADS_PRICE`, `ADS_DESCP`, `ADS_LOC`, `ADS_AREA`, `ADS_PUBLISH_DATE`, `ADS_LATEST_UPDATE_DATE`, `USER_ID`, `JOB_CONTRACT_TYPE`, `JOB_SALARY_TYPE`, `PRIVATE_STATUS`, `ADMIN_UPDATE_DATE`) VALUES
-('AJ00001', 'DELETED', 'Promoter at Sungai Dua Tesco', 'jobs', '20.00', 'Promoter At Sungai Dua Tesco', 'Penang', '', '2021-03-30 13:26:06', '2021-03-30 13:26:06', 33, 'parttime', 'permonth', 'ACTIVE', NULL),
-('AJ00004', 'ACTIVE', 'The Kapit\"s Cashier', 'jobs', '5.50', 'Part-timer needed in Kapit&quot;s CG', 'Cahaya Gemilang', '', '2021-04-01 11:04:54', '2021-04-01 11:04:54', 37, 'parttime', 'perhour', 'ACTIVE', NULL),
-('AJ00005', 'DELETED', 'Part time Job', 'jobs', '25.00', 'Part-timer needed<br />\r\nQueensbay', 'Penang', '', '2021-04-01 16:16:37', '2021-04-01 16:16:37', 33, 'parttime', 'perday', 'ACTIVE', NULL),
 ('AJ00006', 'RESERVED', 'Find me', 'job service', '111.00', 'https://www.w3schools.com/howto/howto_js_snackbar.asp', 'Penang', '', '2021-04-02 16:17:16', '2021-04-02 16:17:16', 33, 'parttime', 'perday', 'DELETED', '2021-04-19 13:29:20'),
-('AJ00007', 'SOLD', ' Service Crew (Vegetarian Restaurant)', 'jobs', '5.00', '**Looking For Part Time Service Crew (Vegetarian Restaurant)**<br />\r\nLocation: Nearby Bukit Jambul Complex<br />\r\nDrop message if your are interested ðŸ˜ŠðŸ˜Š', 'Penang', '', '2021-04-03 11:02:06', '2021-04-05 18:26:36', 35, 'parttime', 'perhour', 'ACTIVE', NULL),
+('AJ00007', 'ACTIVE', ' Service Crew (Vegetarian Restaurant)', 'jobs', '5.00', '**Looking For Part Time Service Crew (Vegetarian Restaurant)**<br />\r\nLocation: Nearby Bukit Jambul Complex<br />\r\nDrop message if your are interested ðŸ˜ŠðŸ˜Š', 'Penang', '', '2021-04-03 11:02:06', '2021-04-05 18:26:36', 35, 'parttime', 'perhour', 'ACTIVE', NULL),
 ('AJ00008', 'SOLD', 'data entry for system updates', 'jobs', '300.00', 'Job title: data entry for system updates<br />\r\nPeriod: asap (1-2weeks)<br />\r\nLocation: Bayan lepas<br />\r\nWages: RM 300<br />\r\nInterested pls pm me.', 'Penang', '', '2021-04-03 11:02:41', '2021-04-06 08:29:04', 35, 'parttime', 'perday', 'ACTIVE', NULL),
-('AJ00009', 'DELETED', 'restu Daily Dose Parttimer', 'jobs', '5.00', 'parttimer needed', 'Restu', '', '2021-04-04 16:41:09', '2021-04-04 16:41:09', 33, 'parttime', 'perhour', 'ACTIVE', NULL);
+('AJ00009', 'ACTIVE', 'Part Time Admin', 'jobs', '30.00', 'Part Time Admin<br />\r\nCompany: Emperor Wealth Consultancy<br />\r\nStart date:30/05/2021<br />\r\n(work from home)<br />\r\nLocation: Penang island<br />\r\nWages: Will be counted Daily<br />\r\nContact person: Ms Lee 0123455678<br />\r\n(Kindly whatsapp only)<br />\r\nNotes:<br />\r\n-Only Female Malay<br />\r\n-Have own transport<br />\r\n-Have own Laptop &amp; Printer<br />\r\n-Have Wifi/data<br />\r\nRequirement:<br />\r\n-Organize documents and filling forms<br />\r\n-Call customer service and handle client&rsquo;s quotation<br />\r\n-Able to work independently<br />\r\n-Good in powerpoint, excel, Microsoft word, google drive<br />\r\n-Able to write in English and Malay', 'Penang', '', '2021-06-08 13:41:50', '2021-06-08 13:41:50', 34, 'parttime', 'perday', 'ACTIVE', NULL),
+('AJ00010', 'ACTIVE', 'ã€Hiring Promoterã€‘ Aeon Qb', 'jobs', '20.00', 'ã€Hiring Promoterã€‘<br />\r\n1- Aeon Qb (weekend only)<br />\r\nDate : 5ï¼Œ6ï¼Œ12ï¼Œ13/12/2020<br />\r\nTime : 12-8pm<br />\r\nRest Time : 4-5pm<br />\r\nAttire : White Collar Shirt, Black Pants, Dark Colour Cover Shoes<br />\r\n(1 promoter needed)<br />\r\nPlease whatsapp 012345678 if interest', 'Penang', '', '2021-06-08 13:42:57', '2021-06-08 13:42:57', 34, 'parttime', 'perday', 'ACTIVE', NULL);
 
 -- --------------------------------------------------------
 
@@ -247,7 +230,21 @@ INSERT INTO `ads_management` (`ID`, `ADS_ID`, `ACTION`, `DESCP`, `TIME`, `PIC`) 
 (16, 'AI00137', 'DELETE', 'AGAIN', '2021-04-19 15:41:03', 33),
 (17, 'AI00137', 'RECOVER', 'AGIAN', '2021-04-19 15:41:12', 33),
 (18, 'AI00138', 'RECOVER', 'YES', '2021-04-19 15:48:47', 33),
-(19, 'AI00107', 'DELETE', 'deleted', '2021-04-20 02:59:51', 37);
+(19, 'AI00107', 'DELETE', 'deleted', '2021-04-20 02:59:51', 37),
+(20, 'AI00120', 'RECOVER', 'y', '2021-05-24 09:18:38', 37),
+(21, 'AI00118', 'RECOVER', 'y', '2021-05-24 09:20:40', 37),
+(22, 'AA00012', 'RECOVER', 'yes ssure', '2021-05-24 09:23:07', 37),
+(23, 'AI00119', 'DELETE', 'YESH DELETE', '2021-05-24 09:29:31', 37),
+(24, 'AI00128', 'DELETE', 'YES', '2021-05-24 09:32:42', 37),
+(25, 'AI00115', 'DELETE', 'YESH', '2021-05-24 09:33:59', 37),
+(26, 'AI00115', 'DELETE', 'YESH', '2021-05-24 09:34:19', 37),
+(27, 'AI00126', 'DELETE', 'YESH', '2021-05-24 09:34:47', 37),
+(28, 'AI00111', 'DELETE', 'YESH', '2021-05-24 09:36:44', 37),
+(29, 'AI00113', 'DELETE', 'test', '2021-05-24 09:41:28', 37),
+(30, 'AA00017', 'DELETE', 'test', '2021-05-24 09:42:22', 37),
+(31, 'AI00121', 'DELETE', 'test', '2021-05-24 09:43:24', 37),
+(32, 'AI00112', 'DELETE', 'yesh', '2021-05-24 09:48:22', 37),
+(33, 'AA00018', 'DELETE', 'Y', '2021-05-24 09:51:13', 37);
 
 -- --------------------------------------------------------
 
@@ -291,7 +288,8 @@ CREATE TABLE `avatar` (
 INSERT INTO `avatar` (`AVATAR_ID`, `AVATAR_NAME`, `AVATAR_FILE`) VALUES
 ('0', 'TEST', ''),
 ('A00001', '15052021-171108selfie.png', 0x73656c6669652e706e67),
-('A00002', '15052021-163618download-removebg-preview.png', 0x646f776e6c6f61642d72656d6f766562672d707265766965772e706e67);
+('A00002', '15052021-163618download-removebg-preview.png', 0x646f776e6c6f61642d72656d6f766562672d707265766965772e706e67),
+('A00003', '22052021-113611download-removebg-preview.png', 0x646f776e6c6f61642d72656d6f766562672d707265766965772e706e67);
 
 -- --------------------------------------------------------
 
@@ -350,14 +348,14 @@ CREATE TABLE `deleted_ads` (
   `SUB_INFO_1` varchar(11) NOT NULL,
   `SUB_INFO_2` varchar(11) NOT NULL,
   `PRIVATE_STATUS` varchar(11) NOT NULL,
-  `ADMIN_UPDATE_DATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `DELETED_DATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `deleted_ads`
 --
 
-INSERT INTO `deleted_ads` (`DELETED_ADS_ID`, `ADS_ID`, `ADS_STATUS`, `ADS_TITLE`, `ADS_CAT`, `ADS_PRICE`, `ADS_DESCP`, `ADS_LOC`, `ADS_AREA`, `ADS_PUBLISH_DATE`, `ADS_LATEST_UPDATE_DATE`, `USER_ID`, `SUB_INFO_1`, `SUB_INFO_2`, `PRIVATE_STATUS`, `ADMIN_UPDATE_DATE`) VALUES
+INSERT INTO `deleted_ads` (`DELETED_ADS_ID`, `ADS_ID`, `ADS_STATUS`, `ADS_TITLE`, `ADS_CAT`, `ADS_PRICE`, `ADS_DESCP`, `ADS_LOC`, `ADS_AREA`, `ADS_PUBLISH_DATE`, `ADS_LATEST_UPDATE_DATE`, `USER_ID`, `SUB_INFO_1`, `SUB_INFO_2`, `PRIVATE_STATUS`, `DELETED_DATE`) VALUES
 ('DA00001', 'AI00131', 'DELETED', 'Power cable', 'item home', '10.00', 'used one sem', 'Plaza Ivory', '', '2021-04-25 18:55:09', '2021-03-30 11:39:31', 33, 'used', 'meetup mail', 'ACTIVE', '2021-04-25 18:48:58'),
 ('DA00002', 'AI00133', 'DELETED', 'scissors', 'item book', '5.00', 'Bought extra', 'Bakti Permai', '', '2021-04-25 18:55:13', '2021-04-01 05:05:35', 37, 'new', 'meetup ', 'ACTIVE', '2021-04-25 18:53:16'),
 ('DA00003', 'AI00105', 'DELETED', 'New Concept Chinese Book LAC100', 'item book', '10.00', 'Used one sem.<br />\r\nRM10 for 2 books- level 1 &amp; 2', 'Cahaya Gemilang', '', '2021-04-25 18:55:17', '2021-04-01 10:11:26', 37, 'used', 'meetup mail', 'ACTIVE', '2021-04-25 18:53:42'),
@@ -365,7 +363,23 @@ INSERT INTO `deleted_ads` (`DELETED_ADS_ID`, `ADS_ID`, `ADS_STATUS`, `ADS_TITLE`
 ('DA00005', 'AI00130', 'DELETED', 'NEW External HDD cable 3.1 fast transfer', 'item mobile', '15.00', 'NEW External HDD cable 3.1 fast transfer<br />\r\nRM 15<br />\r\nReason: bought wrong thing', 'Plaza Ivory', '', '2021-04-06 04:59:52', '2021-04-06 04:59:52', 37, 'new', 'meetup mail', 'ACTIVE', '2021-04-25 18:59:49'),
 ('DA00006', 'AI00110', 'DELETED', 'Motorcycle', 'item automotive', '540.00', 'Used 1 year around Penang.', 'Tekun', '', '2021-04-01 11:21:25', '2021-04-01 11:21:25', 37, 'used', 'meetup ', 'ACTIVE', '2021-04-25 19:00:55'),
 ('DA00007', 'AI00109', 'DELETED', 'USB Type-C Charging Dock Sony', 'item mobile', '20.00', 'New.<br />\r\nReason to sell: Bought Extra', 'University Heights', '', '2021-04-01 11:20:18', '2021-04-01 11:20:18', 37, 'new', 'meetup mail', 'ACTIVE', '2021-04-25 19:01:06'),
-('DA00008', 'AI00135', 'DELETED', 'Harddisk', 'item mobile', '187.00', 'New.', ' 	Putrajaya', '', '2021-04-06 05:08:01', '2021-04-06 05:08:01', 37, 'new', 'meetup mail', 'ACTIVE', '2021-04-25 19:12:17');
+('DA00008', 'AI00135', 'DELETED', 'Harddisk', 'item mobile', '187.00', 'New.', ' 	Putrajaya', '', '2021-04-06 05:08:01', '2021-04-06 05:08:01', 37, 'new', 'meetup mail', 'ACTIVE', '2021-04-25 19:12:17'),
+('DA00009', 'AI00099', 'DELETED', 'Power Cable', 'item home', '44.00', 'Power Cable with 3 socket', 'Desa Universiti', '', '2021-03-30 13:45:54', '2021-03-30 13:45:54', 33, 'used', 'meetup mail', 'ACTIVE', '2021-05-22 10:35:23'),
+('DA00011', 'AA00009', 'DELETED', 'Taman Pekaka Room for Rent', 'accommodation room', '500.00', 'Taman Pekaka Room For Rent<br />\r\n<br />\r\n&quot;nice place&quot;', 'Taman Pekaka', '', '2021-05-22 14:36:30', '2021-04-01 11:17:17', 37, 'm f', '', 'ACTIVE', '2021-05-22 11:31:21'),
+('DA00012', 'AJ00004', 'DELETED', 'The Kapit\"s Cashier', 'jobs', '5.50', 'Part-timer needed in Kapit&quot;s CG', 'Cahaya Gemilang', '', '2021-04-01 11:04:54', '2021-04-01 11:04:54', 37, 'parttime', 'perhour', 'ACTIVE', '2021-05-22 11:36:55'),
+('DA00020', 'AI00120', 'DELETED', 'Item: Khind Air Cooler', 'item home', '240.00', 'Item: Khind Air Cooler<br />\r\nCondition: 9.5/10<br />\r\nPrice: RM240<br />\r\nWarranty: Yes<br />\r\nReason: Moving<br />\r\n<br />\r\nKindly pm me if interested.', 'Plaza Ivory', '', '2021-04-03 11:11:48', '2021-04-03 11:11:48', 35, 'used', 'meetup ', 'ACTIVE', '2021-05-24 09:18:38'),
+('DA00021', 'AI00118', 'DELETED', 'Spanish textbook (LAE100&LAE200)', 'item book', '60.00', 'Spanish textbook (LAE100&amp;LAE200)<br />\r\n<br />\r\nPrice: RM 60 (original price RM120)<br />\r\n<br />\r\nSelf pick up from Desa Airmasï¼ˆæ°´é‡‘é˜ï¼‰<br />\r\nPm if interested', 'Desa Airmas', '', '2021-04-03 11:09:49', '2021-04-03 11:09:49', 35, 'used', 'meetup ', 'ACTIVE', '2021-05-24 09:20:39'),
+('DA00022', 'AA00012', 'DELETED', 'Desa Airmas, Shared Middle Room For rent', 'accommodation room', '275.00', 'Desa Airmas<br />\r\nShared Middle Room for rent from now until September 2021 (one place left)<br />\r\n*GIRL ONLY*<br />\r\n- RM275/month<br />\r\n- Rental fees includes utilities and Wi-Fi<br />\r\n- Fully furnished: refrigerator, washing machine, water heater, study table and chair, bed, wardrobe, etc.<br />\r\n-Facilities: swimming pool, 24 hours security, playground, etc.<br />\r\n-Cooking is allowed.<br />\r\n-Have regular cleaning services.<br />\r\nPlease message me directly if interested. Thank you.', 'Desa Airmas', '', '2021-05-22 14:36:13', '2021-04-03 11:00:26', 35, 'f', '', 'ACTIVE', '2021-05-24 09:23:07'),
+('DA00023', 'AI00119', 'DELETED', 'Financial Calculator', 'item book', '60.00', 'Condition: 8.5/10<br />\r\nPrice: RM 60<br />\r\nKindly PM if interested.<br />\r\n(Hand over within USM only)', 'Indah Kembara', '', '2021-04-03 11:10:50', '2021-04-03 11:10:50', 35, 'used', 'meetup ', 'ACTIVE', '2021-05-24 09:29:30'),
+('DA00024', 'AI00128', 'DELETED', 'My passport Western Digital 1tb', 'item mobile', '180.00', 'My passport Western Digital 1tb<br />\r\nCondition : 10/10 (new, never opened)<br />\r\nWarranty : 3 years (can register the product after opening)<br />\r\nPrice : RM180<br />\r\nPM if interested', 'Gambier Heights', '', '2021-04-06 04:57:49', '2021-04-06 04:57:49', 35, 'new', 'meetup mail', 'ACTIVE', '2021-05-24 09:32:42'),
+('DA00025', 'AI00115', 'DELETED', 'Small Refrigerator', 'item home', '55.00', 'Price can be negotiate<br />\r\nUsed 2 years. Still functional and cool.', 'Plaza Ivory', '', '2021-04-01 11:31:48', '2021-04-01 17:26:26', 33, 'new', 'meetup mail', 'ACTIVE', '2021-05-24 09:33:59'),
+('DA00027', 'AI00126', 'DELETED', 'guitar', 'item sport', '45.00', 'guitar', 'Bakti Permai', '', '2021-04-03 14:25:19', '2021-04-03 14:25:19', 33, 'used', 'meetup ', 'ACTIVE', '2021-05-24 09:34:47'),
+('DA00028', 'AI00111', 'DELETED', 'Hand Sanitizer', 'item health', '7.00', 'Bought extra during MCO.<br />\r\n300 ml :)', 'Cahaya Gemilang', '', '2021-04-01 11:25:08', '2021-04-01 11:25:08', 34, 'new', 'meetup ', 'ACTIVE', '2021-05-24 09:36:43'),
+('DA00029', 'AI00113', 'DELETED', 'HadaLabo Hydrating Lotion', 'item health', '8.00', 'Bought extra during sales. Hahahahahahhahahaha niceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee<br />\r\nExp: December 2021', 'Saujana', '', '2021-04-01 11:28:13', '2021-04-02 16:22:08', 34, 'new', 'meetup mail', 'ACTIVE', '2021-05-24 09:41:27'),
+('DA00030', 'AA00017', 'DELETED', 'PLAZA IVORY room for rent', 'accommodation room', '300.00', 'BILIK UNTUK DISEWA untuk lelaki sahaja<br />\r\n<br />\r\nkawasan: PLAZA IVORY, halaman bukit gambier, gelugor (depan gate USM)<br />\r\n<br />\r\nKelebihan:<br />\r\n1) hanya 3 orang serumah (high privacy)<br />\r\n2) 24jam security<br />\r\n3) akses percuma (gym, kolam renang, parking motor)<br />\r\n4) Fully furnished (katil, tilam, almari, peti sejuk, perkakas memasak, mesin basuh)<br />\r\n5) kedai makan di tingkat bawah<br />\r\n6) berdekatan dengan 7E dan dobi<br />\r\n7) kawasan rumah yang tenang dan sunyi<br />\r\n<br />\r\nHarga: RM300 (termasuk bill air)<br />\r\nDeposit 1 bulan sahaja<br />\r\nTiada caj tambahan (agent dan security)<br />\r\n<br />\r\nWhatsapp', 'Plaza Ivory', '', '2021-05-22 14:36:02', '2021-05-22 14:21:43', 34, 'm f', '', 'ACTIVE', '2021-05-24 09:42:21'),
+('DA00031', 'AI00121', 'DELETED', 'Brand new Plus correction tape', 'item book', '4.00', 'Brand new Plus correction tape<br />\r\n', 'Plaza Ivory', '', '2021-04-03 11:12:57', '2021-04-03 11:12:57', 34, 'new', 'meetup ', 'ACTIVE', '2021-05-24 09:43:24'),
+('DA00032', 'AI00112', 'DELETED', 'Table Lamp', 'item home', '15.00', 'Used 1 year.<br />\r\nReason to sell: graduate', 'Desa Airmas', '', '2021-04-01 11:26:50', '2021-04-01 11:26:50', 34, 'used', 'meetup ', 'ACTIVE', '2021-05-24 09:48:21'),
+('DA00033', 'AA00018', 'DELETED', 'Epark Condominium Master Room rental', 'accommodation room', '450.00', 'Hello! We are looking for a third housemate (preferably girl) to join us to rent a apartment together in Epark Condominium. The room is the master room with your own balcony and toilet. Price is rm450. You can share with a friend ðŸ˜ moving in July 2021 onwards. Please message me asap if interested. House is renovated and furnished!', 'op', 'EPark Condominium', '2021-05-24 09:50:57', '2021-05-22 14:48:53', 34, 'f ', '', 'ACTIVE', '2021-05-24 09:51:12');
 
 -- --------------------------------------------------------
 
@@ -387,16 +401,35 @@ CREATE TABLE `deleted_image` (
 --
 
 INSERT INTO `deleted_image` (`DELETED_IMAGE_ID`, `IMAGE_ID`, `IMAGE_NAME`, `IMAGE_FILE`, `ADS_ID`, `IMAGE_STATUS`) VALUES
-('DI00001', 'II00107', '30032021-154555118513656_1628081910698951_1420826555857116714_o.jpg', 0x3131383531333635365f313632383038313931303639383935315f313432303832363535353835373131363731345f6f2e6a7067, 'AI00099', 'ACTIVE'),
+('DI00001', 'II00107', '30032021-154555118513656_1628081910698951_1420826555857116714_o.jpg', 0x3131383531333635365f313632383038313931303639383935315f313432303832363535353835373131363731345f6f2e6a7067, 'AI00099', 'DELETED'),
 ('DI00002', 'II00123', '30032021-154555118513656_1628081910698951_1420826555857116714_o.jpg', 0x3131383531333635365f313632383038313931303639383935315f313432303832363535353835373131363731345f6f2e6a7067, 'AI00116', 'DELETED'),
 ('DI00003', 'II00160', '06042021-07053514032021-182422s2.jpg', 0x31343033323032312d31383234323273322e6a7067, 'AI00133', 'DELETED'),
-('DI00004', 'II00160', '06042021-07053514032021-182422s2.jpg', 0x31343033323032312d31383234323273322e6a7067, 'AI00133', 'DELETED'),
 ('DI00005', 'II00109', '01042021-121126158434878_3747598791953377_9208070573117501308_o.jpg', 0x3135383433343837385f333734373539383739313935333337375f393230383037303537333131373530313330385f6f2e6a7067, 'AI00105', 'DELETED'),
 ('DI00006', 'II00163', '06042021-070939racquet.jpg', 0x726163717565742e6a7067, 'AI00136', 'DELETED'),
 ('DI00007', 'II00157', '06042021-0659522.jpg', 0x322e6a7067, 'AI00130', 'DELETED'),
 ('DI00008', 'II00115', '01042021-132125117410588_3212318608863854_8463565417869916590_o.jpg', 0x3131373431303538385f333231323331383630383836333835345f383436333536353431373836393931363539305f6f2e6a7067, 'AI00110', 'DELETED'),
 ('DI00009', 'II00114', '01042021-132018121523794_10158615954241069_4044641292330411452_o.jpg', 0x3132313532333739345f31303135383631353935343234313036395f343034343634313239323333303431313435325f6f2e6a7067, 'AI00109', 'DELETED'),
-('DI00010', 'II00162', '06042021-070801harddisk.jpg', 0x686172646469736b2e6a7067, 'AI00135', 'DELETED');
+('DI00010', 'II00162', '06042021-070801harddisk.jpg', 0x686172646469736b2e6a7067, 'AI00135', 'DELETED'),
+('DI00011', 'II00100', '30032021-154555118513656_1628081910698951_1420826555857116714_o.jpg', 0x3131383531333635365f313632383038313931303639383935315f313432303832363535353835373131363731345f6f2e6a7067, 'AI00099', 'DELETED'),
+('DI00012', 'IJ00006', 'back.jpg', '', 'AJ00006', 'DELETED'),
+('DI00013', 'IA00002', '01042021-131717143323478_10222579861758444_8565751726708371530_n.jpg', 0x3134333332333437385f31303232323537393836313735383434345f383536353735313732363730383337313533305f6e2e6a7067, 'AA00009', 'DELETED'),
+('DI00014', 'IA00003', '01042021-131719143918455_10222579853878247_3989026736606154323_n.jpg', 0x3134333931383435355f31303232323537393835333837383234375f333938393032363733363630363135343332335f6e2e6a7067, 'AA00009', 'DELETED'),
+('DI00015', 'IJ00004', 'back.jpg', '', 'AJ00004', 'DELETED'),
+('DI00016', 'II00113', '01042021-131822117287823_3283153008441709_3774745954395949514_o.jpg', 0x3131373238373832335f333238333135333030383434313730395f333737343734353935343339353934393531345f6f2e6a7067, 'AI00108', 'DELETED'),
+('DI00017', 'II00110', '01042021-121525153034394_3875260909197486_974216977668471792_o.jpg', 0x3135333033343339345f333837353236303930393139373438365f3937343231363937373636383437313739325f6f2e6a7067, 'AI00106', 'DELETED'),
+('DI00018', 'II00128', '03042021-131148khind.jpg', 0x6b68696e642e6a7067, 'AI00120', 'DELETED'),
+('DI00019', 'II00126', '03042021-130950spanish.jpg', 0x7370616e6973682e6a7067, 'AI00118', 'DELETED'),
+('DI00020', 'IA00006', 'back.jpg', '', 'AA00012', 'DELETED'),
+('DI00021', 'II00127', '03042021-131050cal.jpg', 0x63616c2e6a7067, 'AI00119', 'DELETED'),
+('DI00022', 'II00155', '06042021-0657495.jpg', 0x352e6a7067, 'AI00128', 'DELETED'),
+('DI00023', 'II00121', '01042021-133148142796091_10225271222313673_5690524665664163424_n.jpg', 0x3134323739363039315f31303232353237313232323331333637335f353639303532343636353636343136333432345f6e2e6a7067, 'AI00115', 'DELETED'),
+('DI00024', 'II00143', '03042021-162519128360364_10219215550841055_4205455050157265481_o.jpg', 0x3132383336303336345f31303231393231353535303834313035355f343230353435353035303135373236353438315f6f2e6a7067, 'AI00126', 'DELETED'),
+('DI00025', 'II00116', '01042021-132508119124273_10223747421779297_7044679361817617957_o.jpg', 0x3131393132343237335f31303232333734373432313737393239375f373034343637393336313831373631373935375f6f2e6a7067, 'AI00111', 'DELETED'),
+('DI00026', 'II00118', '01042021-132813142057172_4288621054487981_5614656930171343688_n.jpg', 0x3134323035373137325f343238383632313035343438373938315f353631343635363933303137313334333638385f6e2e6a7067, 'AI00113', 'DELETED'),
+('DI00027', 'IA00011', '03042021-133242ivory.jpg', 0x69766f72792e6a7067, 'AA00017', 'DELETED'),
+('DI00028', 'II00129', '03042021-131257correction tape.jpg', 0x636f7272656374696f6e20746170652e6a7067, 'AI00121', 'DELETED'),
+('DI00029', 'II00117', '01042021-132650132009325_10158842441334243_7042266840867819298_o.jpg', 0x3133323030393332355f31303135383834323434313333343234335f373034323236363834303836373831393239385f6f2e6a7067, 'AI00112', 'DELETED'),
+('DI00030', 'IA00012', '22052021-163129186495109_4904850526196636_689732289889011202_n.jpg', 0x3138363439353130395f343930343835303532363139363633365f3638393733323238393838393031313230325f6e2e6a7067, 'AA00018', 'DELETED');
 
 -- --------------------------------------------------------
 
@@ -444,19 +477,11 @@ CREATE TABLE `image_accom` (
 
 INSERT INTO `image_accom` (`IMAGE_ID`, `IMAGE_NAME`, `IMAGE_FILE`, `ADS_ID`, `IMAGE_STATUS`) VALUES
 ('IA00001', '30032021-154440118513656_1628081910698951_1420826555857116714_o.jpg', 0x3131383531333635365f313632383038313931303639383935315f313432303832363535353835373131363731345f6f2e6a7067, 'AA00008', 'ACTIVE'),
-('IA00002', '01042021-131717143323478_10222579861758444_8565751726708371530_n.jpg', 0x3134333332333437385f31303232323537393836313735383434345f383536353735313732363730383337313533305f6e2e6a7067, 'AA00009', 'ACTIVE'),
-('IA00003', '01042021-131719143918455_10222579853878247_3989026736606154323_n.jpg', 0x3134333931383435355f31303232323537393835333837383234375f333938393032363733363630363135343332335f6e2e6a7067, 'AA00009', 'ACTIVE'),
 ('IA00004', '01042021-132603142960132_3194273224008328_2974609898773065167_o.jpg', 0x3134323936303133325f333139343237333232343030383332385f323937343630393839383737333036353136375f6f2e6a7067, 'AA00010', 'ACTIVE'),
-('IA00005', 'back.jpg', NULL, 'AA00011', 'ACTIVE'),
-('IA00006', 'back.jpg', NULL, 'AA00012', 'ACTIVE'),
-('IA00007', 'back.jpg', NULL, 'AA00013', 'ACTIVE'),
 ('IA00008', '03042021-131516room.jpg', 0x726f6f6d2e6a7067, 'AA00014', 'ACTIVE'),
 ('IA00009', '03042021-132113room1.jpg', 0x726f6f6d312e6a7067, 'AA00015', 'ACTIVE'),
 ('IA00010', 'back.jpg', NULL, 'AA00016', 'ACTIVE'),
-('IA00011', '03042021-133242ivory.jpg', 0x69766f72792e6a7067, 'AA00017', 'ACTIVE'),
-('IA00012', '03042021-134203srisaujana.jpg', 0x7372697361756a616e612e6a7067, 'AA00018', 'ACTIVE'),
-('IA00013', '03042021-134204ss.jpg', 0x73732e6a7067, 'AA00018', 'ACTIVE'),
-('IA00014', '03042021-134204tp.jpg', 0x74702e6a7067, 'AA00018', 'ACTIVE');
+('IA00011', 'back.jpg', NULL, 'AA00017', 'ACTIVE');
 
 -- --------------------------------------------------------
 
@@ -479,49 +504,28 @@ CREATE TABLE `image_item` (
 --
 
 INSERT INTO `image_item` (`IMAGE_ID`, `IMAGE_NAME`, `IMAGE_FILE`, `IMAGE_LABEL`, `IMAGE_OCR`, `ADS_ID`, `IMAGE_STATUS`) VALUES
-('II00100', '30032021-154555118513656_1628081910698951_1420826555857116714_o.jpg', 0x3131383531333635365f313632383038313931303639383935315f313432303832363535353835373131363731345f6f2e6a7067, 'Font,Gas,Electronic component,Electronic device,Cable,', '', 'AI00099', 'ACTIVE'),
-('II00103', '31032021-180855119037647_2836749156427405_1133240207257501025_o.jpg', 0x3131393033373634375f323833363734393135363432373430355f313133333234303230373235373530313032355f6f2e6a7067, 'Laptop,Computer keyboard', '', 'AI00101', 'ACTIVE'),
 ('II00106', '01042021-060326122668074_4511143332292028_7115184180018496207_n.jpg', 0x3132323636383037345f343531313134333333323239323032385f373131353138343138303031383439363230375f6e2e6a7067, 'Packaged goods,Orange,Triangle,Font,Wheel,Book', 'GLOBAL\nEDITION\nMarketing Research\nAn Applied Orientation\nSEVENTH EDITION\nNaresh K. Malhotra', 'AI00103', 'ACTIVE'),
-('II00110', '01042021-121525153034394_3875260909197486_974216977668471792_o.jpg', 0x3135333033343339345f333837353236303930393139373438365f3937343231363937373636383437313739325f6f2e6a7067, 'Packaged goods,Hand,Liquid,Drinkware,Window,', 'Lifebuoy\nACTIV SILVER FORMULA\nantibacierial bodywash\nAF\nRM\nCOol fresh\nwith menthol\nkills 99.9% germs', 'AI00106', 'ACTIVE'),
-('II00113', '01042021-131822117287823_3283153008441709_3774745954395949514_o.jpg', 0x3131373238373832335f333238333135333030383434313730395f333737343734353935343339353934393531345f6f2e6a7067, 'Calculator,Packaged goods,Telephony,Mobile phone,Communication Device,Telephone,', '6\nBAII Plus\nTEXAS INSTRUMENTS\nA TEXAS INSTRUMENTS\nBA II PLUSTM\nBUSINESS ANALYST\næç¤ºå·¥ä½œè¡¨:èž¢å¹•æŒ‡ç¤ºç‡ˆè™Ÿ\né€™äº›ç™»å¹•æŒ‡ç¤ºç‡ˆè™Ÿæœƒæç¤ºæ‚¨è¦æŽ¡å–è¡Œå‹•ã€‚\nQUIT\nSET\nSNI\nON|OFF\n130\nCPT\nENTER\næŒ‡ç¤ºç‡ˆè™Ÿ æ„ç¾©\nCOMPUTEè‹¥è¦è¨ˆç®—å€¼,æŒ‰ä¸‹@ã€‚\n2ND\nCF\nNPV\nIRR\nENTER\nè‹¥è¦è¼¸å…¥é¡¯ç¤ºè®Šæ•¸çš„å€¼,è«‹å¥äººæ•¸å­—ç„¶å¾ŒæŠ€\nTENTER\nè‹¥è¦æª¢è¦–è¨­å®šé¸é …,è«‹æŒ‰ä¸‹æ¯å€‹é¸é …çš„å›ž\nSET]ã€‚é¡¯ç¤ºé¸é …ä¾†é¸å–å®ƒã€‚\nè‹¥è¦æª¢è¦–å·¥ä½œè¡¨è®Šæ•¸,è«‹æŒ‰ä¸‹å£æˆ–å›ž.\n,è‹¥è¦é¸å–æ¨™æº–è¨ˆ', 'AI00108', 'ACTIVE'),
-('II00116', '01042021-132508119124273_10223747421779297_7044679361817617957_o.jpg', 0x3131393132343237335f31303232333734373432313737393239375f373034343637393336313831373631373935375f6f2e6a7067, 'Packaged goods,Liquid,Bottle cap,Solution,Bottle,', 'GOTDYA\"\nBACTERIOSTATIC\nRATE\n99.9 %\nDISPOSABLE\nALCOHOL\nRinse-free Hand Sanitizer\nhet content 500ml', 'AI00111', 'ACTIVE'),
-('II00117', '01042021-132650132009325_10158842441334243_7042266840867819298_o.jpg', 0x3133323030393332355f31303135383834323434313333343234335f373034323236363834303836373831393239385f6f2e6a7067, 'Lighting', '', 'AI00112', 'ACTIVE'),
-('II00118', '01042021-132813142057172_4288621054487981_5614656930171343688_n.jpg', 0x3134323035373137325f343238383632313035343438373938315f353631343635363933303137313334333638385f6e2e6a7067, 'Packaged goods,Fluid,Drinkware,Finger,Drink,', 'ã‚†3ã6ã ã‚ã‚Š\næ¥µæ½¤\nã‚¹ãƒ¼ãƒ‘ãƒ¼ãƒ’ã‚¢ãƒ«ãƒ­ãƒ³ç·š\ngã˜ãƒ’ã‚¢ãƒ«ãƒ­ãƒ³æ¶²', 'AI00113', 'ACTIVE'),
-('II00121', '01042021-133148142796091_10225271222313673_5690524665664163424_n.jpg', 0x3134323739363039315f31303232353237313232323331333637335f353639303532343636353636343136333432345f6e2e6a7067, 'Packaged goods,Rectangle,Personal computer,Home appliance,Gadget,', 'Hisense', 'AI00115', 'ACTIVE'),
-('II00126', '03042021-130950spanish.jpg', 0x7370616e6973682e6a7067, 'Person,Packaged goods,Person,Person,Top,Product,Font,Publication,T-shirt,Book', 'mÃ©todoo\nDE ESPAÃ‘OL\nA1\nLibro del alumno\nESPAÃ‘OL LENGUA EXTRANJERA\nANAYA\nCD-AUDIO', 'AI00118', 'ACTIVE'),
-('II00127', '03042021-131050cal.jpg', 0x63616c2e6a7067, 'Calculator', '', 'AI00119', 'ACTIVE'),
-('II00128', '03042021-131148khind.jpg', 0x6b68696e642e6a7067, 'Home appliance,Box', '', 'AI00120', 'ACTIVE'),
-('II00129', '03042021-131257correction tape.jpg', 0x636f7272656374696f6e20746170652e6a7067, 'Grooming trimmer,Packaged goods,Font,Material property,Electric blue,Plastic,', 'D.\ncaps lock\nPLUS F t\nshift O\nWHIPER\nWHIPER MINI\næ™ºæ…§åž‹æ»šè½®ä¿®\nå¯æ›¿æ¢å¼\nå®½\n*6.\né•¿\n60m\nNVID\nGER\n(intel\nCORE i5\n7th Gen\né»è´´ç¨³åœ‹\nä½¿ç”¨èˆ’å¿ƒ\nå¹³æ»‘æŸ”è½¯çš„è¿·ä½ æ¼”è¼¸\nå¯ä¸Žçº¸é¢ç´§å¯†è´´åˆ\næ—¥æœ¬å“è´¨\nWH-635B\nCorrection Tape WH-635\nPLUSWHIPER MR\nä½¿ç”¨è¿‡ç¨‹ä¸­ä¸ä¼šæ–­è£‚,è®©æ‚¨è½»æ¾ç”¨åˆ°æœ€åŽ!', 'AI00121', 'ACTIVE'),
-('II00130', '03042021-133449109706732_3525048794195337_1715923026977269009_o.jpg', 0x3130393730363733325f333532353034383739343139353333375f313731353932333032363937373236393030395f6f2e6a7067, 'Washing machine', '', 'AI00122', 'DELETED'),
-('II00131', '03042021-133452109833814_3525050077528542_1269344369023780186_o.jpg', 0x3130393833333831345f333532353035303037373532383534325f313236393334343336393032333738303138365f6f2e6a7067, 'Packaged goods,Automotive tire,Output device,Grey,Motor vehicle,', 'ren\nOidea\nEB\n39L\n24L-O 2\nORINSE\n15L O 19\nO SPIN\nPOWER\n7.0kg\nMFW-701S BruzzY\nPROGRAM\nWATER\nLEVEL\nFUNCTION\n...\n****\n0 00 0', 'AI00122', 'DELETED'),
-('II00134', '03042021-133503117406865_4183795211662252_3850583446267892413_o.jpg', 0x3131373430363836355f343138333739353231313636323235325f333835303538333434363236373839323431335f6f2e6a7067, 'Chair', '', 'AI00122', 'DELETED'),
 ('II00135', '03042021-135140109706732_3525048794195337_1715923026977269009_o.jpg', 0x3130393730363733325f333532353034383739343139353333375f313731353932333032363937373236393030395f6f2e6a7067, 'Washing machine', '', 'AI00123', 'ACTIVE'),
 ('II00136', '03042021-135144109833814_3525050077528542_1269344369023780186_o.jpg', 0x3130393833333831345f333532353035303037373532383534325f313236393334343336393032333738303138365f6f2e6a7067, 'Packaged goods,Automotive tire,Output device,Grey,Motor vehicle,', 'ren\nOidea\nEB\n39L\n24L-O 2\nORINSE\n15L O 19\nO SPIN\nPOWER\n7.0kg\nMFW-701S BruzzY\nPROGRAM\nWATER\nLEVEL\nFUNCTION\n...\n****\n0 00 0', 'AI00123', 'ACTIVE'),
-('II00137', '03042021-135308117410588_3212318608863854_8463565417869916590_o.jpg', 0x3131373431303538385f333231323331383630383836333835345f383436333536353431373836393931363539305f6f2e6a7067, 'Wheel,Wheel,Motorcycle', '', 'AI00124', 'ACTIVE'),
-('II00138', '03042021-135311117879324_4183796514995455_1636773310287565261_o.jpg', 0x3131373837393332345f343138333739363531343939353435355f313633363737333331303238373536353236315f6f2e6a7067, 'Luggage & bags,Tire,Tire', '', 'AI00124', 'ACTIVE'),
-('II00139', '03042021-135315117953177_3212374575524924_8331510463929762043_o.jpg', 0x3131373935333137375f333231323337343537353532343932345f383333313531303436333932393736323034335f6f2e6a7067, 'Guitar', '', 'AI00124', 'ACTIVE'),
-('II00140', '03042021-135723109706732_3525048794195337_1715923026977269009_o.jpg', 0x3130393730363733325f333532353034383739343139353333375f313731353932333032363937373236393030395f6f2e6a7067, 'Washing machine', '', 'AI00125', 'ACTIVE'),
-('II00141', '03042021-135726109833814_3525050077528542_1269344369023780186_o.jpg', 0x3130393833333831345f333532353035303037373532383534325f313236393334343336393032333738303138365f6f2e6a7067, 'Packaged goods,Automotive tire,Output device,Grey,Motor vehicle,', 'ren\nOidea\nEB\n39L\n24L-O 2\nORINSE\n15L O 19\nO SPIN\nPOWER\n7.0kg\nMFW-701S BruzzY\nPROGRAM\nWATER\nLEVEL\nFUNCTION\n...\n****\n0 00 0', 'AI00125', 'ACTIVE'),
-('II00142', '03042021-135730117287823_3283153008441709_3774745954395949514_o.jpg', 0x3131373238373832335f333238333135333030383434313730395f333737343734353935343339353934393531345f6f2e6a7067, 'Calculator,Packaged goods,Telephony,Mobile phone,Communication Device,Telephone,', '6\nBAII Plus\nTEXAS INSTRUMENTS\nA TEXAS INSTRUMENTS\nBA II PLUSTM\nBUSINESS ANALYST\næç¤ºå·¥ä½œè¡¨:èž¢å¹•æŒ‡ç¤ºç‡ˆè™Ÿ\né€™äº›ç™»å¹•æŒ‡ç¤ºç‡ˆè™Ÿæœƒæç¤ºæ‚¨è¦æŽ¡å–è¡Œå‹•ã€‚\nQUIT\nSET\nSNI\nON|OFF\n130\nCPT\nENTER\næŒ‡ç¤ºç‡ˆè™Ÿ æ„ç¾©\nCOMPUTEè‹¥è¦è¨ˆç®—å€¼,æŒ‰ä¸‹@ã€‚\n2ND\nCF\nNPV\nIRR\nENTER\nè‹¥è¦è¼¸å…¥é¡¯ç¤ºè®Šæ•¸çš„å€¼,è«‹å¥äººæ•¸å­—ç„¶å¾ŒæŠ€\nTENTER\nè‹¥è¦æª¢è¦–è¨­å®šé¸é …,è«‹æŒ‰ä¸‹æ¯å€‹é¸é …çš„å›ž\nSET]ã€‚é¡¯ç¤ºé¸é …ä¾†é¸å–å®ƒã€‚\nè‹¥è¦æª¢è¦–å·¥ä½œè¡¨è®Šæ•¸,è«‹æŒ‰ä¸‹å£æˆ–å›ž.\n,è‹¥è¦é¸å–æ¨™æº–è¨ˆ', 'AI00125', 'ACTIVE'),
-('II00143', '03042021-162519128360364_10219215550841055_4205455050157265481_o.jpg', 0x3132383336303336345f31303231393231353535303834313035355f343230353435353035303135373236353438315f6f2e6a7067, 'Guitar', '', 'AI00126', 'ACTIVE'),
-('II00144', '05042021-194309109706732_3525048794195337_1715923026977269009_o.jpg', 0x3130393730363733325f333532353034383739343139353333375f313731353932333032363937373236393030395f6f2e6a7067, 'Washing machine', '', 'AI00122', 'DELETED'),
-('II00145', '05042021-194312109833814_3525050077528542_1269344369023780186_o.jpg', 0x3130393833333831345f333532353035303037373532383534325f313236393334343336393032333738303138365f6f2e6a7067, 'Packaged goods,Automotive tire,Output device,Grey,Motor vehicle,', 'ren\\nOidea\\nEB\\n39L\\n24L-O 2\\nORINSE\\n15L O 19\\nO SPIN\\nPOWER\\n7.0kg\\nMFW-701S BruzzY\\nPROGRAM\\nWATER\\nLEVEL\\nFUNCTION\\n...\\n****\\n0 00 0', 'AI00122', 'DELETED'),
-('II00146', '05042021-194316117287823_3283153008441709_3774745954395949514_o.jpg', 0x3131373238373832335f333238333135333030383434313730395f333737343734353935343339353934393531345f6f2e6a7067, 'Calculator,Packaged goods,Telephony,Mobile phone,Communication Device,Telephone,', '6\\nBAII Plus\\nTEXAS INSTRUMENTS\\nA TEXAS INSTRUMENTS\\nBA II PLUSTM\\nBUSINESS ANALYST\\næç¤ºå·¥ä½œè¡¨:èž¢å¹•æŒ‡ç¤ºç‡ˆè™Ÿ\\né€™äº›ç™»å¹•æŒ‡ç¤ºç‡ˆè™Ÿæœƒæç¤ºæ‚¨è¦æŽ¡å–è¡Œå‹•ã€‚\\nQUIT\\nSET\\nSNI\\nON|OFF\\n130\\nCPT\\nENTER\\næŒ‡ç¤ºç‡ˆè™Ÿ æ„ç¾©\\nCOMPUTEè‹¥è¦è¨ˆç®—å€¼,æŒ‰ä¸‹@ã€‚\\n2ND\\nCF\\nNPV\\nIRR\\nENTER\\nè‹¥è¦è¼¸å…¥é¡¯ç¤ºè®Šæ•¸çš„å€¼,è«‹å¥äººæ•¸å­—ç„¶å¾ŒæŠ€\\nTENTER\\nè‹¥è¦æª¢è¦–è¨­å®šé¸é …,è«‹æŒ‰ä¸‹æ¯å€‹é¸é …çš„å›ž\\nSET]ã€‚é¡¯ç¤ºé¸é …ä¾†é¸å–å®ƒã€‚\\nè‹¥è¦æª¢è¦–å·¥ä½œè¡¨è®Šæ•¸,è«‹æŒ‰ä¸‹å£æˆ–å', 'AI00122', 'DELETED'),
-('II00147', '05042021-194324117301918_3212375718858143_7942614420945364665_o.jpg', 0x3131373330313931385f333231323337353731383835383134335f373934323631343432303934353336343636355f6f2e6a7067, 'Packaged goods,Brown,Wood,Font,Rectangle,', 'Techno\\nGuitar', 'AI00122', 'DELETED'),
-('II00148', '05042021-194326117406865_4183795211662252_3850583446267892413_o.jpg', 0x3131373430363836355f343138333739353231313636323235325f333835303538333434363236373839323431335f6f2e6a7067, 'Chair', '', 'AI00122', 'DELETED'),
 ('II00149', '05042021-194423109706732_3525048794195337_1715923026977269009_o.jpg', 0x3130393730363733325f333532353034383739343139353333375f313731353932333032363937373236393030395f6f2e6a7067, 'Washing machine', '', 'AI00122', 'ACTIVE'),
 ('II00150', '05042021-194426109833814_3525050077528542_1269344369023780186_o.jpg', 0x3130393833333831345f333532353035303037373532383534325f313236393334343336393032333738303138365f6f2e6a7067, 'Packaged goods,Automotive tire,Output device,Grey,Motor vehicle,', 'ren\\nOidea\\nEB\\n39L\\n24L-O 2\\nORINSE\\n15L O 19\\nO SPIN\\nPOWER\\n7.0kg\\nMFW-701S BruzzY\\nPROGRAM\\nWATER\\nLEVEL\\nFUNCTION\\n...\\n****\\n0 00 0', 'AI00122', 'ACTIVE'),
 ('II00151', '05042021-194431117287823_3283153008441709_3774745954395949514_o.jpg', 0x3131373238373832335f333238333135333030383434313730395f333737343734353935343339353934393531345f6f2e6a7067, 'Calculator,Packaged goods,Telephony,Mobile phone,Communication Device,Telephone,', '6\\nBAII Plus\\nTEXAS INSTRUMENTS\\nA TEXAS INSTRUMENTS\\nBA II PLUSTM\\nBUSINESS ANALYST\\næç¤ºå·¥ä½œè¡¨:èž¢å¹•æŒ‡ç¤ºç‡ˆè™Ÿ\\né€™äº›ç™»å¹•æŒ‡ç¤ºç‡ˆè™Ÿæœƒæç¤ºæ‚¨è¦æŽ¡å–è¡Œå‹•ã€‚\\nQUIT\\nSET\\nSNI\\nON|OFF\\n130\\nCPT\\nENTER\\næŒ‡ç¤ºç‡ˆè™Ÿ æ„ç¾©\\nCOMPUTEè‹¥è¦è¨ˆç®—å€¼,æŒ‰ä¸‹@ã€‚\\n2ND\\nCF\\nNPV\\nIRR\\nENTER\\nè‹¥è¦è¼¸å…¥é¡¯ç¤ºè®Šæ•¸çš„å€¼,è«‹å¥äººæ•¸å­—ç„¶å¾ŒæŠ€\\nTENTER\\nè‹¥è¦æª¢è¦–è¨­å®šé¸é …,è«‹æŒ‰ä¸‹æ¯å€‹é¸é …çš„å›ž\\nSET]ã€‚é¡¯ç¤ºé¸é …ä¾†é¸å–å®ƒã€‚\\nè‹¥è¦æª¢è¦–å·¥ä½œè¡¨è®Šæ•¸,è«‹æŒ‰ä¸‹å£æˆ–å', 'AI00122', 'ACTIVE'),
 ('II00152', '05042021-194438117301918_3212375718858143_7942614420945364665_o.jpg', 0x3131373330313931385f333231323337353731383835383134335f373934323631343432303934353336343636355f6f2e6a7067, 'Packaged goods,Brown,Wood,Font,Rectangle,', 'Techno\\nGuitar', 'AI00122', 'ACTIVE'),
 ('II00153', '05042021-194441117406865_4183795211662252_3850583446267892413_o.jpg', 0x3131373430363836355f343138333739353231313636323235325f333835303538333434363236373839323431335f6f2e6a7067, 'Chair', '', 'AI00122', 'ACTIVE'),
 ('II00154', '05042021-202401122668074_4511143332292028_7115184180018496207_n.jpg', 0x3132323636383037345f343531313134333333323239323032385f373131353138343138303031383439363230375f6e2e6a7067, 'Packaged goods,Orange,Triangle,Font,Wheel,Book', 'GLOBAL\nEDITION\nMarketing Research\nAn Applied Orientation\nSEVENTH EDITION\nNaresh K. Malhotra', 'AI00127', 'ACTIVE'),
-('II00155', '06042021-0657495.jpg', 0x352e6a7067, 'Packaged goods,Hand,Publication,Finger,Font,Book', 'MY PASSPORT\nWD\nAuto backup.\nPasswerd protection.\nSauvegarde automatique.\nProtection par\net de passe,\nLGO\nTO To\nPORTABLE STORAGE\nSTOCKAGE PORTABLE\nwe', 'AI00128', 'ACTIVE'),
-('II00156', '06042021-0658534.jpg', 0x342e6a7067, 'Mechanical fan', '', 'AI00129', 'ACTIVE'),
-('II00161', '06042021-070716boiler.jpg', 0x626f696c65722e6a7067, 'Packaged goods,Drinkware,Green,Cup,Kitchen appliance,', 'MAX\n1.8L\n1.2L\nMIN\n0.GL\nwing\"', 'AI00134', 'ACTIVE'),
-('II00166', '06042021-07243577.jpg', 0x37372e6a7067, 'Shoe', '', 'AI00138', 'ACTIVE'),
-('II00167', '06042021-07243678.jpg', 0x37382e6a7067, 'Shoe,Shoe,Packaged goods,Footwear,Jeans,Hand,Dress,', 'ES - 3717\nTHE\nSENE\nDIE W', 'AI00138', 'ACTIVE'),
-('II00168', '06042021-07243979.jpg', 0x37392e6a7067, 'Shoe,Shoe,Footwear', '', 'AI00138', 'ACTIVE'),
-('II00169', '06042021-07244180.jpg', 0x38302e6a7067, 'Shoe', '', 'AI00138', 'ACTIVE');
+('II00155', '24052021-115852adidas_shoe.jpg', 0x6164696461735f73686f652e6a7067, 'Shoe', '', 'AI00128', 'ACTIVE'),
+('II00156', '24052021-121535HowToWriteAndSpeakInBetterEnglish.jpg', 0x486f77546f5772697465416e64537065616b496e426574746572456e676c6973682e6a7067, 'BookBook', 'READER\'S DIGEST\nHOW TO\nWRITE\nAND\nSPEAK\nBETTER', 'AI00129', 'ACTIVE'),
+('II00157', '24052021-12235601042021-123736117406865_4183795211662252_3850583446267892413_o.jpg', 0x30313034323032312d3132333733363131373430363836355f343138333739353231313636323235325f333835303538333434363236373839323431335f6f2e6a7067, 'Chair', '', 'AI00130', 'ACTIVE'),
+('II00158', '24052021-12240001042021-123741117879324_4183796514995455_1636773310287565261_o.jpg', 0x30313034323032312d3132333734313131373837393332345f343138333739363531343939353435355f313633363737333331303238373536353236315f6f2e6a7067, 'Luggage & bags,Tire,Tire', '', 'AI00130', 'ACTIVE'),
+('II00159', '08062021-212716189891580_10159207514231069_2802578829666470321_n.jpg', 0x3138393839313538305f31303135393230373531343233313036395f323830323537383832393636363437303332315f6e2e6a7067, 'Gadget,Communication Device,Display device,Tablet computer,Electronic device,', '', 'AI00131', 'ACTIVE'),
+('II00160', '08062021-213040190998589_10159207513471069_8686960689556953638_n.jpg', 0x3139303939383538395f31303135393230373531333437313036395f383638363936303638393535363935333633385f6e2e6a7067, 'Packaged goods,Packaged goods,Packaged goods,Packaged goods,Packaged goods,Packaged goods,Packaged goods,Packaged goods,Product,Font,Publication,Window,', 'Exam GradeR\nDOLPHIN\nPaper Mate\nExam Grade\nWOOD\nFOX\nLUE\nUY\nNEW\n2B tend\nPentel.\niquid\nLiquid\nPaper\nrwBUE PACK\naper\né¦™è¯•ä¸“ç”¨é“…ç¬”\nEasy to Erase and\nto Sharpen\nGORZECTION PEN\nE\nSan anturtN\nNon-Toxic\n12pcs\nRM33 for ALL Stationaries\nFast\nDry\nFABER CASTELL\nPente Penbel\nF Poi\nDryline\nUltra\nPockel\nconSOTauION VEN\nPENEMB ETULAN\nFacket\nEco Gel\nThe fast dry gel pen\nG-2\nEAS\n\"Be\nEASY TO HOLD,\nEASY TO REFILL!\nBe environment conscious!\n0.5\nALSO GREAT WITH\nBlue\nGel\nROLLERS A GELS\nCorrect Express RREOTION FE', 'AI00132', 'ACTIVE'),
+('II00161', '08062021-213153192172977_4247856981933195_1929763852717538619_n.jpg', 0x3139323137323937375f343234373835363938313933333139355f313932393736333835323731373533383631395f6e2e6a7067, 'Printer', '', 'AI00133', 'ACTIVE'),
+('II00162', '08062021-213259189238849_2876305442610739_2898607721226096043_n.jpg', 0x3138393233383834395f323837363330353434323631303733395f323839383630373732313232363039363034335f6e2e6a7067, 'Packaged goods,Publication,Font,Art,Poster,', 'Main Textbook\nElementary 1-2\nSECOND ASIAN EDITION\n3A Corporation\nSyarikat Perdagangan San Her Sdn Bhd\nMinna no\nNihongo 1-2\nLessons 13 - 25\nOU\nå“ˆå¿ƒãªã®åœ“æœ¬èªž', 'AI00134', 'ACTIVE'),
+('II00163', '08062021-213401187104869_2032584006893627_5999829776329457803_n.jpg', 0x3138373130343836395f323033323538343030363839333632375f353939393832393737363332393435373830335f6e2e6a7067, 'Tableware,Kitchen utensil,Guitar accessory,Food,Cutlery,', '', 'AI00135', 'ACTIVE'),
+('II00164', '08062021-213452184800127_3090498634511466_747127389359053227_n.jpg', 0x3138343830303132375f333039303439383633343531313436365f3734373132373338393335393035333232375f6e2e6a7067, 'Packaged goods,Packaged goods,Hand,Finger,Gesture,Thumb,', 'SanDisk\nD.\nCruzer Blade 8GB\nFC C CE SDcz5o-008G\nMADE IN CHINA BE10030CKN', 'AI00136', 'ACTIVE'),
+('II00165', '08062021-213623173863548_10208393821320413_3591972847604770912_n.jpg', 0x3137333836333534385f31303230383339333832313332303431335f333539313937323834373630343737303931325f6e2e6a7067, 'Table top', '', 'AI00137', 'ACTIVE'),
+('II00166', '08062021-213626175048107_10208393821840426_4739949149872664195_n.jpg', 0x3137353034383130375f31303230383339333832313834303432365f343733393934393134393837323636343139355f6e2e6a7067, 'Table', '', 'AI00137', 'ACTIVE'),
+('II00167', '08062021-213727176945747_4350034401708428_4756209350743993724_n.jpg', 0x3137363934353734375f343335303033343430313730383432385f343735363230393335303734333939333732345f6e2e6a7067, 'Luggage & bags', '', 'AI00138', 'ACTIVE');
 
 -- --------------------------------------------------------
 
@@ -542,13 +546,10 @@ CREATE TABLE `image_job` (
 --
 
 INSERT INTO `image_job` (`IMAGE_ID`, `IMAGE_NAME`, `IMAGE_FILE`, `ADS_ID`, `IMAGE_STATUS`) VALUES
-('IJ00002', '30032021-155015118513656_1628081910698951_1420826555857116714_o.jpg', 0x3131383531333635365f313632383038313931303639383935315f313432303832363535353835373131363731345f6f2e6a7067, 'AJ00001', 'ACTIVE'),
-('IJ00004', 'back.jpg', NULL, 'AJ00004', 'ACTIVE'),
-('IJ00005', '01042021-181638158591175_4342368485796705_8121668060363904627_n.jpg', 0x3135383539313137355f343334323336383438353739363730355f383132313636383036303336333930343632375f6e2e6a7067, 'AJ00005', 'ACTIVE'),
-('IJ00006', 'back.jpg', NULL, 'AJ00006', 'ACTIVE'),
 ('IJ00007', 'back.jpg', NULL, 'AJ00007', 'ACTIVE'),
 ('IJ00008', 'back.jpg', NULL, 'AJ00008', 'ACTIVE'),
-('IJ00009', 'back.jpg', NULL, 'AJ00009', 'ACTIVE');
+('IJ00009', 'back.jpg', NULL, 'AJ00009', 'ACTIVE'),
+('IJ00010', 'back.jpg', NULL, 'AJ00010', 'ACTIVE');
 
 -- --------------------------------------------------------
 
@@ -599,8 +600,8 @@ INSERT INTO `location` (`LOC_ID`, `LOC_VALUE`, `LOC_NAME`, `LAT`, `LNG`) VALUES
 (27, 'Pahang', ' 	Pahang', '3.97434100', '102.43805700'),
 (28, 'Penang', 'Penang', '5.28515300', '100.45623800'),
 (29, 'Perak', 'Perak', '4.69395000', '101.11757700'),
-(30, ' 	Perlis', 'Perlis', '6.44358900', '100.21659900'),
-(32, ' 	Putrajaya', ' 	Putrajaya', '2.92640000', '101.69640000'),
+(30, 'Perlis', 'Perlis', '6.44358900', '100.21659900'),
+(32, 'Putrajaya', 'Putrajaya', '2.92640000', '101.69640000'),
 (33, 'Selangor', 'Selangor', '3.50924700', '101.52480300'),
 (34, 'Sabah', 'Sabah', '5.42040400', '116.79678300'),
 (35, 'Sarawak', 'Sarawak', '4.39949300', '113.99138600'),
@@ -616,7 +617,6 @@ INSERT INTO `location` (`LOC_ID`, `LOC_VALUE`, `LOC_NAME`, `LAT`, `LNG`) VALUES
 
 CREATE TABLE `message` (
   `MSG_ID` int(11) NOT NULL,
-  `ROOM_ID` int(11) NOT NULL,
   `SENDER_ID` int(11) NOT NULL,
   `RECEIVER_ID` int(11) NOT NULL,
   `CONTENT` text NOT NULL,
@@ -628,12 +628,37 @@ CREATE TABLE `message` (
 -- Dumping data for table `message`
 --
 
-INSERT INTO `message` (`MSG_ID`, `ROOM_ID`, `SENDER_ID`, `RECEIVER_ID`, `CONTENT`, `TIME`, `STATUS`) VALUES
-(1, 0, 33, 37, 'hi', '2021-05-03 15:17:09', 1),
-(2, 0, 37, 33, 'hi1', '2021-05-03 15:17:09', 1),
-(3, 0, 33, 37, 'WHAT', '2021-05-04 12:53:22', 1),
-(4, 0, 33, 37, 'ANYHTNG?', '2021-05-04 12:53:22', 1),
-(5, 1, 33, 35, 'HI ', '2021-05-04 12:55:55', 1);
+INSERT INTO `message` (`MSG_ID`, `SENDER_ID`, `RECEIVER_ID`, `CONTENT`, `TIME`, `STATUS`) VALUES
+(1, 33, 37, 'hi', '2021-05-03 15:17:09', 1),
+(2, 37, 33, 'hi1', '2021-05-03 15:17:09', 1),
+(3, 33, 37, 'WHAT', '2021-05-04 12:53:22', 1),
+(4, 33, 37, 'ANYHTNG?', '2021-05-04 12:53:23', 1),
+(5, 33, 35, 'HI ', '2021-05-04 12:55:55', 1),
+(6, 33, 37, 'test', '2021-05-31 18:07:33', 0),
+(7, 33, 37, 'long', '2021-05-31 18:07:53', 0),
+(8, 33, 37, 's', '2021-05-31 18:07:56', 0),
+(9, 33, 37, 'r', '2021-05-31 18:07:57', 0),
+(10, 33, 37, 'o', '2021-05-31 18:07:58', 0),
+(11, 33, 37, 'l', '2021-05-31 18:07:58', 0),
+(12, 33, 37, 'l', '2021-05-31 18:07:59', 0),
+(13, 33, 37, 'l', '2021-05-31 18:08:00', 0),
+(14, 37, 33, 'dont span', '2021-05-31 18:13:44', 0),
+(15, 37, 33, 'spam', '2021-05-31 18:13:47', 0),
+(16, 37, 33, 'dont', '2021-05-31 18:13:49', 0),
+(17, 37, 35, 'hey anna, im henry', '2021-05-31 18:15:08', 0),
+(18, 37, 33, 'la', '2021-06-01 04:37:17', 0),
+(19, 33, 54, 'hello minglio', '2021-06-01 08:52:30', 0),
+(20, 33, 35, 'hey anna, im mingli1234 userid 33', '2021-06-01 09:24:54', 0),
+(21, 35, 33, 'hi mingli1234, im anna 35', '2021-06-01 09:26:45', 0),
+(22, 33, 34, 'hi michele new user, im mingli1234', '2021-06-01 09:57:52', 0),
+(23, 33, 53, 'hi mingli123', '2021-05-29 22:31:21', 1),
+(24, 33, 37, 'pigu', '2021-06-01 13:08:08', 0),
+(25, 33, 35, 'HEYYO ANNA', '2021-06-01 13:44:35', 0),
+(26, 37, 33, 'ANYTHING?', '2021-06-01 13:44:59', 0),
+(27, 35, 33, 'I\'m Anna, testing with phone', '2021-06-01 14:54:39', 0),
+(28, 35, 35, 'hi anna, im anna', '2021-06-01 14:58:57', 0),
+(29, 35, 35, 'chatting to myself', '2021-06-01 15:06:04', 0),
+(30, 33, 33, 'yo', '2021-06-03 06:38:17', 0);
 
 -- --------------------------------------------------------
 
@@ -847,12 +872,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`USER_ID`, `USER_EMAIL`, `USER_PSWD`, `USER_NAME`, `WHATSAPP`, `USER_GENDER`, `SCHOOL`, `ADDRESS`, `AREA`, `AVATAR_ID`, `USER_STATUS`, `CREATE_AT`, `TOKEN`, `ADMIN_UPDATE_DATE`) VALUES
-(33, 'minglilee@student.usm.my', '123', 'MingLi1234', '60124268891', NULL, 'cs', 'op', 'Greenlane', '', 'A', '2021-03-07 15:54:29', '21888c26a9cf8e938998', NULL),
+(1, 'usmers@usm.my', '123', 'USMERS_ADMIN', NULL, NULL, 'cs', 'Fajar Harapan', NULL, '', 'A', '2021-06-06 15:28:37', NULL, NULL),
+(33, 'minglilee@student.usm.my', '123', 'MingLi1234', '60124268891', NULL, 'cs', 'op', 'Greenlane', 'A00003', 'A', '2021-03-07 15:54:29', '21888c26a9cf8e938998', NULL),
 (34, 'michelle@usm.my', '123', 'Michelle', '60124268891', NULL, 'academic', 'Tekun', '', '', 'A', '2021-03-11 16:40:20', NULL, NULL),
 (35, 'anna@usm.my', '123', 'Anna88', '60124268891', NULL, 'cs', 'Fajar Harapan', '', '', 'R', '2021-03-14 17:29:54', NULL, '2021-04-19'),
-(37, 'henry@usm.my', '123', 'Henry', '60124268891', NULL, 'edu', ' 	Putrajaya', '', 'A00002', 'R', '2021-03-18 19:18:03', NULL, '2021-04-20'),
+(37, 'henry@usm.my', '123', 'Henry', '60124268891', NULL, 'edu', 'ou', 'Putrajaya', 'A00002', 'R', '2021-03-18 19:18:03', NULL, '2021-04-20'),
 (44, 'minglile@student.usm.my', '123', 'mingli1234', '60124268891', NULL, 'art', 'Fajar Harapan', '', '', 'A', '2021-04-06 08:11:53', '85bd1b2a1dc14fd049bd', NULL),
-(53, 'minglile@student.usm.my', '123', 'MingLi123', '60124268891', NULL, 'cs', 'ou', 'Staff Hostel', '', 'R', '2021-04-09 15:13:55', '3fdb9fabcd2dac3e01e8', '2021-04-19'),
+(53, 'minglile@student.usm.my', '123', 'MingLi123', '60124268891', NULL, 'cs', 'ou', 'Staff Hostel', '', 'A', '2021-04-09 15:13:55', '3fdb9fabcd2dac3e01e8', '2021-04-19'),
 (54, 'minglile@student.usm.my', '123', 'MINGLIO', '60124268891', NULL, 'chem', 'ou', 'Home', 'A00001', 'A', '2021-05-14 18:20:44', '9132b80a1c292ebb5196', NULL);
 
 -- --------------------------------------------------------
@@ -996,6 +1022,12 @@ ALTER TABLE `location`
   ADD PRIMARY KEY (`LOC_ID`);
 
 --
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`MSG_ID`);
+
+--
 -- Indexes for table `report`
 --
 ALTER TABLE `report`
@@ -1058,7 +1090,7 @@ ALTER TABLE `abbr`
 -- AUTO_INCREMENT for table `ads_management`
 --
 ALTER TABLE `ads_management`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `ads_status`
@@ -1071,6 +1103,12 @@ ALTER TABLE `ads_status`
 --
 ALTER TABLE `location`
   MODIFY `LOC_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+
+--
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `MSG_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `ticket_status`
