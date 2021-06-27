@@ -31,7 +31,7 @@ $('document').ready(function(){
                 // alert('response:'+response);
                 return false;
             }else if ($.trim(response) == 'not_taken') {
-		console.log('response: '+valid);
+		console.log('response: '+username_state);
             }
             
         }
