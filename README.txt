@@ -1,2 +1,2 @@
 Designed by UIdeck
-For assignement purpose only
+For assignment purpose only
